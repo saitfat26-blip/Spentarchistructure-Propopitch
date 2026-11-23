@@ -1,0 +1,845 @@
+@import "tailwindcss";
+@source "../index.html";
+@source "../src";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+:root {
+  --spenta-canvas: #faf8f4;
+  --spenta-band: #f2efe9;
+  --spenta-surface: #ffffff;
+  --spenta-border: #e4dfd6;
+  --spenta-border-strong: #cfc8bc;
+  --spenta-ink: #16213a;
+  --spenta-body: #4a5163;
+  --spenta-muted: #5f6576;
+  --spenta-brand: #1f3863;
+  --spenta-brand-hover: #12233f;
+  --spenta-brand-tint: #eef3fb;
+  --spenta-positive: #1c6e46;
+  --spenta-caution: #8a5c10;
+  --spenta-danger: #bf000f;
+  --neural-bloom-intensity: 1;
+}
+
+.dark {
+  --spenta-canvas: #0b1020;
+  --spenta-band: #0f1529;
+  --spenta-surface: #141a32;
+  --spenta-border: #232b4a;
+  --spenta-border-strong: #2e3862;
+  --spenta-ink: #e7ebf5;
+  --spenta-body: #c3cce4;
+  --spenta-muted: #8d97b5;
+  --spenta-brand: #8fa6e8;
+  --spenta-brand-hover: #7fa6ff;
+  --spenta-brand-tint: #161d3a;
+  --spenta-positive: #6fcb9f;
+  --spenta-caution: #e0b063;
+  --spenta-danger: #ff6568;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    background-color: var(--spenta-canvas);
+    color: var(--spenta-ink);
+    color-scheme: light;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  code,
+  pre,
+  .font-mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Unified Stone Light & Nocturnal Navy theme wrapper + token utility classes */
+@layer components {
+  .spenta-theme-view {
+    background-color: var(--spenta-canvas);
+    color: var(--spenta-ink);
+    border-color: var(--spenta-border);
+    accent-color: var(--spenta-brand);
+    transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+  }
+
+  .spenta-theme-view ::selection {
+    background-color: var(--spenta-brand);
+    color: var(--spenta-surface);
+  }
+
+  .dark .spenta-theme-view ::selection {
+    background-color: var(--spenta-brand);
+    color: var(--spenta-canvas);
+  }
+
+  .spenta-canvas {
+    background-color: var(--spenta-canvas);
+    color: var(--spenta-ink);
+  }
+
+  .spenta-band {
+    background-color: var(--spenta-band);
+    color: var(--spenta-ink);
+    border-color: var(--spenta-border);
+  }
+
+  .spenta-surface {
+    background-color: var(--spenta-surface);
+    color: var(--spenta-ink);
+    border-color: var(--spenta-border);
+  }
+
+  .spenta-border {
+    border-color: var(--spenta-border);
+  }
+
+  .spenta-border-strong {
+    border-color: var(--spenta-border-strong);
+  }
+
+  .spenta-ink {
+    color: var(--spenta-ink);
+  }
+
+  .spenta-body {
+    color: var(--spenta-body);
+  }
+
+  .spenta-muted {
+    color: var(--spenta-muted);
+  }
+
+  .spenta-brand {
+    color: var(--spenta-brand);
+  }
+
+  .spenta-brand-bg {
+    background-color: var(--spenta-brand);
+    color: var(--spenta-surface);
+  }
+
+  .dark .spenta-brand-bg {
+    color: var(--spenta-canvas);
+  }
+
+  .spenta-brand-tint {
+    background-color: var(--spenta-brand-tint);
+    border-color: var(--spenta-border);
+  }
+
+  .spenta-positive {
+    color: var(--spenta-positive);
+  }
+
+  .spenta-caution {
+    color: var(--spenta-caution);
+  }
+
+  .spenta-danger {
+    color: var(--spenta-danger);
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subtle 24x24 Swiss architectural grid harmonized to Stone & Nocturnal palettes
+ * Hidden by default on mobile (<768px) to prevent excessive visual density;
+ * toggled on mobile via html.spenta-mobile-grid-on, always visible at >=768px. */
+.bg-obsidian-grid {
+  background-image: none;
+  background-size: 24px 24px;
+}
+
+html.spenta-mobile-grid-on .bg-obsidian-grid {
+  background-image:
+    linear-gradient(to right, rgba(31, 56, 99, 0.042) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(31, 56, 99, 0.042) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+html.dark.spenta-mobile-grid-on .bg-obsidian-grid {
+  background-image:
+    linear-gradient(to right, rgba(143, 166, 232, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(143, 166, 232, 0.045) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@media (min-width: 768px) {
+  .bg-obsidian-grid {
+    background-image:
+      linear-gradient(to right, rgba(31, 56, 99, 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(31, 56, 99, 0.055) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .dark .bg-obsidian-grid {
+    background-image:
+      linear-gradient(to right, rgba(143, 166, 232, 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(143, 166, 232, 0.055) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}
+
+/* Governance marquee ticker */
+@keyframes spenta-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-spenta-marquee {
+  display: flex;
+  width: max-content;
+  animation: spenta-marquee 42s linear infinite;
+}
+
+.animate-spenta-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Looping Brand Collaboration Slider (pause on hover/focus, reduced-motion safe) */
+@keyframes spenta-brand-loop {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.spenta-brand-slider-mask {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+.spenta-brand-slider-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: spenta-brand-loop 46s linear infinite;
+}
+
+.spenta-brand-slider-mask:hover .spenta-brand-slider-track,
+.spenta-brand-slider-mask:focus-within .spenta-brand-slider-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spenta-brand-slider-mask {
+    mask-image: none;
+    -webkit-mask-image: none;
+    overflow: visible;
+  }
+  .spenta-brand-slider-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: auto;
+  }
+  .spenta-brand-slider-duplicate {
+    display: none;
+  }
+}
+
+/* Custom CSS 'Emissive Pulse' Animation for Active & Selected 3D Brain Nodes */
+@keyframes spenta-brain-emissive-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px var(--brain-emissive-border, rgba(31, 56, 99, 0.35)),
+      0 0 4px 0 var(--brain-emissive-dim, rgba(31, 56, 99, 0.16));
+    filter: brightness(0.96);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1.5px var(--brain-emissive-bright, rgba(31, 56, 99, 0.85)),
+      0 0 14px 2px var(--brain-emissive-glow, rgba(31, 56, 99, 0.42)),
+      inset 0 0 8px 0 var(--brain-emissive-inner, rgba(31, 56, 99, 0.22));
+    filter: brightness(1.07);
+  }
+}
+
+@keyframes spenta-brain-emissive-pulse-selected {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1.5px var(--brain-emissive-border, rgba(28, 110, 70, 0.55)),
+      0 0 6px 1px var(--brain-emissive-dim, rgba(28, 110, 70, 0.25));
+    filter: brightness(0.98);
+  }
+  50% {
+    box-shadow:
+      0 0 0 2px var(--brain-emissive-bright, rgba(28, 110, 70, 0.95)),
+      0 0 20px 4px var(--brain-emissive-glow, rgba(28, 110, 70, 0.52)),
+      inset 0 0 10px 0 var(--brain-emissive-inner, rgba(28, 110, 70, 0.28));
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes spenta-brain-ring-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(0.9);
+    box-shadow: 0 0 5px 1px var(--brain-emissive-dim, rgba(111, 203, 159, 0.25));
+  }
+  50% {
+    opacity: 0.92;
+    transform: translate(-50%, -50%) scale(1.12);
+    box-shadow:
+      0 0 18px 4px var(--brain-emissive-glow, rgba(111, 203, 159, 0.62)),
+      inset 0 0 10px 1px var(--brain-emissive-inner, rgba(111, 203, 159, 0.35));
+  }
+}
+
+@keyframes spenta-brain-core-dot-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(0.88);
+    box-shadow: 0 0 2px 0 var(--brain-emissive-dim, rgba(111, 203, 159, 0.3));
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.18);
+    box-shadow: 0 0 9px 2px var(--brain-emissive-glow, rgba(111, 203, 159, 0.85));
+  }
+}
+
+@keyframes spenta-svg-emissive-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px var(--brain-emissive-dim, rgba(28, 110, 70, 0.28)));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px var(--brain-emissive-glow, rgba(28, 110, 70, 0.78)));
+  }
+}
+
+.brain-node-emissive-pulse {
+  animation: spenta-brain-emissive-pulse 2.6s ease-in-out infinite;
+  opacity: clamp(0.15, calc(0.45 + 0.55 * var(--neural-bloom-intensity, 1)), 1);
+  will-change: box-shadow, filter, opacity;
+}
+
+.brain-node-emissive-pulse--selected {
+  animation: spenta-brain-emissive-pulse-selected 2.1s ease-in-out infinite;
+  opacity: clamp(0.2, calc(0.5 + 0.5 * var(--neural-bloom-intensity, 1)), 1);
+  will-change: box-shadow, filter, opacity;
+}
+
+.brain-node-ring-pulse {
+  animation: spenta-brain-ring-pulse 2.3s ease-in-out infinite;
+  will-change: transform, opacity, box-shadow;
+}
+
+.brain-core-dot-pulse {
+  animation: spenta-brain-core-dot-pulse 2.2s ease-in-out infinite;
+  opacity: clamp(0.18, calc(0.4 + 0.6 * var(--neural-bloom-intensity, 1)), 1);
+  will-change: transform, opacity, box-shadow;
+}
+
+.brain-core-trail-streak {
+  transform-origin: 100% 50%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--brain-emissive-dim, rgba(111, 203, 159, 0.25)) 45%,
+    var(--brain-emissive-glow, rgba(111, 203, 159, 0.85)) 100%
+  );
+  animation: spenta-brain-core-dot-pulse 2.2s ease-in-out infinite;
+  opacity: clamp(0.18, calc(0.4 + 0.6 * var(--neural-bloom-intensity, 1)), 1);
+  will-change: transform, opacity, box-shadow;
+}
+
+.brain-svg-emissive-pulse {
+  animation: spenta-svg-emissive-pulse 2.4s ease-in-out infinite;
+  will-change: filter;
+}
+
+/* Semantic Design Tokens — Alternate Core 2: Solar System 3D Map (SolarUniverSite-DESIGN) */
+.solar-map-scope {
+  --solar-bg-void: #040814;
+  --solar-bg-deep: #030507;
+  --solar-bg-panel: rgba(4, 10, 22, 0.76);
+  --solar-bg-strip: rgba(4, 10, 22, 0.66);
+  --solar-bg-chip: rgba(4, 10, 22, 0.72);
+  --solar-bg-select: rgba(8, 18, 38, 0.74);
+  --solar-fg-primary: #FFFFFF;
+  --solar-fg-bright: #F7FBFF;
+  --solar-fg-warm: #FFF5E4;
+  --solar-fg-muted: rgba(226, 236, 244, 0.68);
+  --solar-fg-soft: rgba(230, 237, 255, 0.72);
+  --solar-fg-blue: #C4D6F0;
+  --solar-fg-blue-muted: #A8BEDC;
+  --solar-accent-blue: rgba(72, 142, 255, 0.96);
+  --solar-accent-cobalt: #0B57D0;
+  --solar-accent-amber: rgba(255, 181, 99, 0.74);
+  --solar-accent-amber-bg: rgba(255, 137, 79, 0.14);
+  --solar-accent-amber-fg: #FFE0BB;
+  --solar-border-strong: rgba(151, 196, 255, 0.34);
+  --solar-border-mid: rgba(151, 196, 255, 0.26);
+  --solar-border-subtle: rgba(151, 196, 255, 0.21);
+  --solar-border-cyan: rgba(104, 228, 239, 0.2);
+  --solar-shadow-glow: 0 0 18px 0 rgba(77, 157, 255, 0.1) inset, 0 0 18px 0 rgba(77, 157, 255, 0.14);
+  --solar-shadow-strip: 0 0 28px 0 rgba(77, 157, 255, 0.12);
+  --solar-shadow-card: 0 0 30px 0 rgba(0, 0, 0, 0.22);
+  --solar-radius-tab: 5px;
+  --solar-radius-chip: 6px;
+  --solar-radius-panel: 8px;
+  /* Unique Per-Planet Orbital Path Tokens for 3D Inclination Clarity */
+  --solar-orbit-1: #4ADEB5;
+  --solar-orbit-2: #FFB563;
+  --solar-orbit-3: #488EFF;
+  --solar-orbit-4: #FF6B81;
+  --solar-orbit-5: #A78BFA;
+  --solar-orbit-6: #FDE08D;
+  --solar-orbit-7: #68E4EF;
+  --solar-orbit-8: #F472B6;
+  --neural-bloom-intensity: 1;
+}
+
+.solar-map-scope button:focus-visible,
+.solar-map-scope select:focus-visible,
+.solar-map-scope input[type="range"]:focus-visible {
+  outline: 2px solid var(--solar-accent-blue);
+  outline-offset: 2px;
+}
+
+/* Subtle CSS pulse animation on orbital path circles when hovering a planet */
+@keyframes solar-orbit-path-pulse {
+  0%, 100% {
+    opacity: 0.72;
+    transform: scale(1);
+    filter: drop-shadow(0 0 3px var(--solar-orbit-glow, var(--solar-accent-blue)));
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.035);
+    filter: drop-shadow(0 0 10px var(--solar-orbit-glow, var(--solar-accent-blue)));
+  }
+}
+
+.solar-map-scope .solar-orbit-path-circle {
+  transition: opacity 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    stroke-width 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.solar-map-scope .solar-orbit-path-circle--pulsing {
+  animation: solar-orbit-path-pulse 1.9s ease-in-out infinite;
+  will-change: transform, opacity, filter;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solar-map-scope .solar-orbit-path-circle--pulsing {
+    animation: none;
+    opacity: 1;
+    filter: drop-shadow(0 0 6px var(--solar-orbit-glow, var(--solar-accent-blue)));
+  }
+}
+
+/* Semantic Design Tokens — Alternate Core 3: Nebula Galaxy Particle Theme (Parity with .solar-map-scope) */
+.nebula-core-scope {
+  --nebula-bg-void: #070414;
+  --nebula-bg-deep: #04020B;
+  --nebula-bg-panel: rgba(14, 7, 32, 0.82);
+  --nebula-bg-strip: rgba(12, 6, 28, 0.72);
+  --nebula-bg-chip: rgba(18, 9, 39, 0.78);
+  --nebula-bg-select: rgba(24, 11, 51, 0.78);
+  --nebula-fg-primary: #FFFFFF;
+  --nebula-fg-bright: #F7F5FF;
+  --nebula-fg-warm: #FCE7F3;
+  --nebula-fg-muted: rgba(229, 222, 248, 0.68);
+  --nebula-fg-soft: rgba(235, 228, 255, 0.74);
+  --nebula-fg-violet: #C4B5FD;
+  --nebula-fg-violet-muted: #A78BFA;
+  --nebula-fg-teal: #5EEAD4;
+  --nebula-accent-violet: rgba(139, 92, 246, 0.96);
+  --nebula-accent-indigo: #4C1D95;
+  --nebula-accent-magenta: rgba(232, 121, 249, 0.84);
+  --nebula-accent-magenta-bg: rgba(217, 70, 239, 0.16);
+  --nebula-accent-magenta-fg: #F5D0FE;
+  --nebula-accent-teal: #2DD4BF;
+  --nebula-accent-teal-bg: rgba(45, 212, 191, 0.14);
+  --nebula-border-strong: rgba(192, 132, 252, 0.38);
+  --nebula-border-mid: rgba(167, 139, 250, 0.28);
+  --nebula-border-subtle: rgba(167, 139, 250, 0.21);
+  --nebula-border-teal: rgba(45, 212, 191, 0.28);
+  --nebula-shadow-glow: 0 0 18px 0 rgba(139, 92, 246, 0.14) inset, 0 0 22px 0 rgba(217, 70, 239, 0.16);
+  --nebula-shadow-strip: 0 0 28px 0 rgba(45, 212, 191, 0.14);
+  --nebula-shadow-card: 0 0 30px 0 rgba(4, 2, 11, 0.38);
+  --nebula-radius-tab: 5px;
+  --nebula-radius-chip: 6px;
+  --nebula-radius-panel: 8px;
+  /* Deep Violet, Magenta & Teal Gradients for Galaxy Particle Systems */
+  --nebula-gradient-void: radial-gradient(ellipse at 26% 24%, rgba(109, 40, 217, 0.34) 0%, rgba(217, 70, 239, 0.18) 38%, rgba(20, 184, 166, 0.16) 72%, #070414 100%);
+  --nebula-gradient-filament: linear-gradient(135deg, #4C1D95 0%, #D946EF 50%, #2DD4BF 100%);
+  --nebula-gradient-violet: radial-gradient(circle, rgba(109, 40, 217, 0.68) 0%, rgba(76, 29, 149, 0.24) 55%, rgba(7, 4, 20, 0) 100%);
+  --nebula-gradient-magenta: radial-gradient(circle, rgba(232, 121, 249, 0.62) 0%, rgba(190, 24, 93, 0.22) 55%, rgba(7, 4, 20, 0) 100%);
+  --nebula-gradient-teal: radial-gradient(circle, rgba(45, 212, 191, 0.58) 0%, rgba(15, 118, 110, 0.20) 55%, rgba(7, 4, 20, 0) 100%);
+  /* Galaxy Particle System Spectrum Tokens */
+  --nebula-particle-1: #2DD4BF;
+  --nebula-particle-2: #E879F9;
+  --nebula-particle-3: #8B5CF6;
+  --nebula-particle-4: #EC4899;
+  --nebula-particle-5: #4C1D95;
+  --nebula-particle-6: #14B8A6;
+  --nebula-particle-7: #F5D0FE;
+  --nebula-particle-8: #5EEAD4;
+  --neural-bloom-intensity: 1;
+}
+
+.nebula-core-scope .nebula-atmosphere-glow {
+  background-image: var(--nebula-gradient-void);
+  mix-blend-mode: screen;
+  opacity: clamp(0.12, calc(0.24 + var(--neural-bloom-intensity, 1) * 0.28), 0.92);
+  filter: brightness(calc(0.75 + var(--neural-bloom-intensity, 1) * 0.42));
+}
+
+.nebula-core-scope button:focus-visible,
+.nebula-core-scope select:focus-visible,
+.nebula-core-scope input[type="range"]:focus-visible {
+  outline: 2px solid var(--nebula-accent-teal);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-spenta-marquee {
+    animation: none;
+  }
+  .brain-node-emissive-pulse,
+  .brain-node-emissive-pulse--selected,
+  .brain-node-ring-pulse,
+  .brain-core-dot-pulse,
+  .brain-core-trail-streak,
+  .brain-svg-emissive-pulse {
+    animation: none !important;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Crisp custom slider for HITL & Financial Sensitivity controls (Stone / Nocturnal) */
+input[type="range"].spenta-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  border-radius: 999px;
+  background: #cfc8bc;
+  outline: none;
+}
+
+.dark input[type="range"].spenta-slider,
+.spenta-observatory-dark input[type="range"].spenta-slider {
+  background: #232b4a;
+}
+
+input[type="range"].spenta-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #1f3863;
+  border: 2px solid #faf8f4;
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+
+.dark input[type="range"].spenta-slider::-webkit-slider-thumb,
+.spenta-observatory-dark input[type="range"].spenta-slider::-webkit-slider-thumb {
+  background: #8fa6e8;
+  border: 2px solid #0b1020;
+}
+
+input[type="range"].spenta-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+
+input[type="range"].spenta-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #1f3863;
+  border: 2px solid #faf8f4;
+  cursor: pointer;
+}
+
+.dark input[type="range"].spenta-slider::-moz-range-thumb,
+.spenta-observatory-dark input[type="range"].spenta-slider::-moz-range-thumb {
+  background: #8fa6e8;
+  border: 2px solid #0b1020;
+}
+
+/* Solar System Mode (.solar-map-scope) Tokenized Range Slider Overrides */
+.solar-map-scope input[type="range"].spenta-slider {
+  background: var(--solar-border-mid);
+  height: 5px;
+}
+
+.solar-map-scope input[type="range"].spenta-slider::-webkit-slider-thumb {
+  background: var(--solar-accent-amber-fg);
+  border: 2px solid var(--solar-bg-void);
+  box-shadow: 0 0 0 1px var(--solar-accent-amber), 0 0 10px rgba(255, 181, 99, 0.35);
+}
+
+.solar-map-scope input[type="range"].spenta-slider::-moz-range-thumb {
+  background: var(--solar-accent-amber-fg);
+  border: 2px solid var(--solar-bg-void);
+  box-shadow: 0 0 0 1px var(--solar-accent-amber), 0 0 10px rgba(255, 181, 99, 0.35);
+}
+
+/* Nebula Galaxy Theme (.nebula-core-scope) Tokenized Range Slider Overrides */
+.nebula-core-scope input[type="range"].spenta-slider {
+  background: var(--nebula-border-mid);
+  height: 5px;
+}
+
+.nebula-core-scope input[type="range"].spenta-slider::-webkit-slider-thumb {
+  background: var(--nebula-accent-teal);
+  border: 2px solid var(--nebula-bg-void);
+  box-shadow: 0 0 0 1px var(--nebula-accent-magenta), 0 0 12px rgba(232, 121, 249, 0.45);
+}
+
+.nebula-core-scope input[type="range"].spenta-slider::-moz-range-thumb {
+  background: var(--nebula-accent-teal);
+  border: 2px solid var(--nebula-bg-void);
+  box-shadow: 0 0 0 1px var(--nebula-accent-magenta), 0 0 12px rgba(232, 121, 249, 0.45);
+}
+
+/* Print-only Pitch Deck & ROI Report containers are hidden on screen */
+.pitch-deck-print-deck,
+.roi-print-deck {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: landscape;
+    margin: 10mm;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide all site & deck navigational chrome, drawers, modals, and toolbars */
+  header,
+  nav,
+  footer,
+  aside,
+  .no-print,
+  .pitch-deck-nav,
+  .pitch-deck-screen-only {
+    display: none !important;
+  }
+
+  /* Override dark-mode root canvas so printed PDFs never render faint/invisible text */
+  html,
+  html.dark,
+  body,
+  .dark body,
+  #root,
+  main,
+  .spenta-theme-view {
+    background: #ffffff !important;
+    color: #09090b !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+  }
+
+  /* Scoped print isolation when triggered via Print Pitch Deck or Print ROI Report */
+  html.printing-pitch-deck-only body *,
+  html.printing-roi-deck-only body * {
+    visibility: hidden !important;
+  }
+
+  html.printing-pitch-deck-only .pitch-deck-print-deck,
+  html.printing-pitch-deck-only .pitch-deck-print-deck * {
+    visibility: visible !important;
+  }
+
+  html.printing-roi-deck-only .roi-print-deck,
+  html.printing-roi-deck-only .roi-print-deck * {
+    visibility: visible !important;
+  }
+
+  /* Reveal dedicated print-formatted deck */
+  .pitch-deck-print-deck,
+  html.printing-roi-deck-only .roi-print-deck {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  html.printing-roi-deck-only .roi-print-deck {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 9999 !important;
+    background: #ffffff !important;
+  }
+
+  .pitch-deck-print-slide {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    min-height: 176mm !important;
+    padding: 9mm 11mm !important;
+    background: #ffffff !important;
+    color: #09090b !important;
+    border: 1pt solid #d4d4d8 !important;
+    border-top: 3.5pt solid #059669 !important;
+    border-radius: 6pt !important;
+    box-sizing: border-box !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    break-after: page !important;
+    page-break-after: always !important;
+    overflow: visible !important;
+  }
+
+  .pitch-deck-print-slide:last-child {
+    break-after: auto !important;
+    page-break-after: auto !important;
+  }
+
+  .pitch-deck-print-slide h2 {
+    color: #09090b !important;
+    font-size: 20pt !important;
+    line-height: 1.18 !important;
+    font-weight: 800 !important;
+    margin: 0 !important;
+  }
+
+  .pitch-deck-print-subtitle {
+    color: #27272a !important;
+    font-size: 10.5pt !important;
+    line-height: 1.45 !important;
+  }
+
+  .pitch-deck-print-badge {
+    background: #ecfdf5 !important;
+    color: #065f46 !important;
+    border: 0.75pt solid #a7f3d0 !important;
+  }
+
+  .pitch-deck-print-counter {
+    color: #3f3f46 !important;
+  }
+
+  .pitch-deck-print-kpi {
+    background: #f8fafc !important;
+    border: 0.75pt solid #d4d4d8 !important;
+    border-radius: 5pt !important;
+    padding: 3.5mm 4mm !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .pitch-deck-print-kpi-label {
+    color: #52525b !important;
+    font-size: 7.5pt !important;
+  }
+
+  .pitch-deck-print-kpi-value {
+    font-size: 13.5pt !important;
+    font-weight: 800 !important;
+  }
+
+  .print-accent-emerald {
+    color: #065f46 !important;
+  }
+
+  .print-accent-teal {
+    color: #0f766e !important;
+  }
+
+  .print-accent-amber {
+    color: #b45309 !important;
+  }
+
+  .print-accent-crimson {
+    color: #be123c !important;
+  }
+
+  .pitch-deck-print-bullet-dot {
+    background: #059669 !important;
+  }
+
+  .pitch-deck-print-bullet-text {
+    color: #18181b !important;
+    font-size: 9.5pt !important;
+    line-height: 1.45 !important;
+  }
+
+  .pitch-deck-print-callout {
+    background: #ecfdf5 !important;
+    border: 0.75pt solid #a7f3d0 !important;
+    color: #064e3b !important;
+    border-radius: 5pt !important;
+    padding: 3mm 4mm !important;
+    font-size: 8.75pt !important;
+    line-height: 1.4 !important;
+  }
+
+  .pitch-deck-print-callout-label {
+    color: #065f46 !important;
+    font-weight: 700 !important;
+  }
+
+  .pitch-deck-print-notes {
+    background: #f4f4f5 !important;
+    border: 0.75pt solid #d4d4d8 !important;
+    border-left: 3pt solid #059669 !important;
+    color: #18181b !important;
+    border-radius: 4pt !important;
+    padding: 2.5mm 3.5mm !important;
+    font-size: 8.25pt !important;
+    line-height: 1.4 !important;
+  }
+
+  .pitch-deck-print-notes-title {
+    color: #065f46 !important;
+    font-size: 7.5pt !important;
+    font-weight: 700 !important;
+  }
+
+  .pitch-deck-print-footer {
+    border-top: 0.75pt solid #d4d4d8 !important;
+    color: #52525b !important;
+    font-size: 8pt !important;
+    padding-top: 2.5mm !important;
+  }
+}
+

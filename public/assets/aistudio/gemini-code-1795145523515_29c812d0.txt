@@ -1,0 +1,1130 @@
+'use client';
+
+import React, { useMemo, useState } from 'react';
+
+type NavTab =
+  | 'App Vault'
+  | 'Infographics'
+  | 'Financials'
+  | 'Spenta Core'
+  | 'The Brain'
+  | 'Pitch Deck'
+  | 'Resources';
+
+type ViewMode = 'brain' | 'grid';
+type EngineType = 'operations' | 'experience' | 'fusion';
+
+interface SpentaApp {
+  id: string;
+  shortName: string;
+  name: string;
+  hubId: string;
+  category: string;
+  engine: EngineType;
+  tagline: string;
+  setupUsd: number;
+  recurringLabel: string;
+  gmPct: number;
+  minServerTier: 1 | 2 | 3 | 4;
+  layers: string[]; // L1-L6 Sovereign Stack layers activated
+  depends: string[];
+  integratesWith: string[];
+  proofClient: string;
+  deployment: ('On-Prem' | 'Private VPC' | 'SaaS')[];
+}
+
+interface BrainHub {
+  id: string;
+  num: string;
+  label: string;
+  side: 'left' | 'right';
+  y: number;
+  accent: string;
+}
+
+const HUBS: BrainHub[] = [
+  // Left Hemisphere — Operations Engine
+  { id: 'healthcare', num: '01', label: 'Healthcare & Bio', side: 'left', y: 115, accent: '#1EB56A' },
+  { id: 'fintech', num: '02', label: 'Banking & Fintech', side: 'left', y: 280, accent: '#0D9488' },
+  { id: 'enterprise', num: '03', label: 'Enterprise Core & BI', side: 'left', y: 470, accent: '#059669' },
+  { id: 'infra', num: '04', label: 'Security & Data IP', side: 'left', y: 655, accent: '#14B8A6' },
+  // Right Hemisphere — Experience & Frontier Engine
+  { id: 'xr', num: '05', label: 'Spatial XR & 3D IP', side: 'right', y: 115, accent: '#10B981' },
+  { id: 'voice', num: '06', label: 'Voice & Assistants', side: 'right', y: 280, accent: '#0D9488' },
+  { id: 'retail', num: '07', label: 'Retail & BEST', side: 'right', y: 470, accent: '#E11D48' },
+  { id: 'energy', num: '08', label: 'IoT, Edge & X Ltd', side: 'right', y: 655, accent: '#F59E0B' },
+];
+
+const SPENTA_APPS: SpentaApp[] = [
+  {
+    id: 'healthcare_erp',
+    shortName: 'AI Healthcare ERP',
+    name: 'AI Healthcare ERP & Clinical AI',
+    hubId: 'healthcare',
+    category: 'Vertical Industry Suites',
+    engine: 'operations',
+    tagline: 'Care Ops, AI Shift Handover, Smart Rostering (HL7/FHIR), AI GP & Rx OCR',
+    setupUsd: 19800,
+    recurringLabel: '$48K/yr ARR ($45/bed)',
+    gmPct: 58.0,
+    minServerTier: 3,
+    layers: ['L3', 'L5', 'L6'],
+    depends: ['cyber_sla'],
+    integratesWith: ['icr_ops', 'voice_ai', 'spatial_xr'],
+    proofClient: 'Apollo JMI · LABAID',
+    deployment: ['On-Prem', 'Private VPC', 'SaaS'],
+  },
+  {
+    id: 'icr_ops',
+    shortName: 'Document AI (ICR)',
+    name: 'Document Intelligence (ICR) & Bulk Data Ops',
+    hubId: 'fintech',
+    category: 'AI & Data Operations',
+    engine: 'operations',
+    tagline: 'LLaMA 3.2 Vision + LayoutLMv3 (<30s/form, 0.88 HITL gate) & Reconciliation',
+    setupUsd: 48500,
+    recurringLabel: 'Per-page / Annual SaaS',
+    gmPct: 33.2,
+    minServerTier: 2,
+    layers: ['L3', 'L5', 'L6'],
+    depends: ['cyber_sla'],
+    integratesWith: ['fintech_rails', 'workflow_ai', 'genai_bi', 'healthcare_erp'],
+    proofClient: 'Prime Bank (BankOCR)',
+    deployment: ['On-Prem', 'Private VPC'],
+  },
+  {
+    id: 'fintech_rails',
+    shortName: 'Fintech & MFS Suite',
+    name: 'Fintech Suite (Wallets, Crypto & MFS)',
+    hubId: 'fintech',
+    category: 'Vertical Industry Suites',
+    engine: 'operations',
+    tagline: 'Digital Wallets, Custodial/Non-Custodial Crypto & MFS rails with KYC/AML',
+    setupUsd: 39800,
+    recurringLabel: 'License + 24/7 SLA',
+    gmPct: 33.7,
+    minServerTier: 3,
+    layers: ['L2', 'L5', 'L6'],
+    depends: ['cyber_sla'],
+    integratesWith: ['icr_ops', 'genai_bi', 'voice_ai'],
+    proofClient: 'bKash · LankaBangla',
+    deployment: ['On-Prem', 'Private VPC'],
+  },
+  {
+    id: 'mis_erp',
+    shortName: 'Modular MIS & ERP',
+    name: 'Management Information System (MIS) & SaaS',
+    hubId: 'enterprise',
+    category: 'Enterprise Core & Modernization',
+    engine: 'operations',
+    tagline: 'Stock MIS, Asset Tracking, HRM/RBAC, Work Orders, Branch Maps & HelloKhata',
+    setupUsd: 20400,
+    recurringLabel: 'Modular SaaS License',
+    gmPct: 29.4,
+    minServerTier: 4,
+    layers: ['L5', 'L6'],
+    depends: [],
+    integratesWith: ['genai_bi', 'workflow_ai', 'iot_edge', 'legacy_mod'],
+    proofClient: 'BEST (65+ Showrooms)',
+    deployment: ['On-Prem', 'Private VPC', 'SaaS'],
+  },
+  {
+    id: 'genai_bi',
+    shortName: 'Conversational GenAI BI',
+    name: 'BI Dashboard w/ Conversational GenAI',
+    hubId: 'enterprise',
+    category: 'AI & Data Operations',
+    engine: 'operations',
+    tagline: 'Prompt-driven analytics inside ERP/MIS over PostgreSQL, Kafka & React',
+    setupUsd: 22300,
+    recurringLabel: 'Monthly Analytics Retainer',
+    gmPct: 29.1,
+    minServerTier: 3,
+    layers: ['L3', 'L5', 'L6'],
+    depends: ['mis_erp'],
+    integratesWith: ['icr_ops', 'legacy_mod', 'iot_edge', 'fintech_rails'],
+    proofClient: 'Jotax Oy (-80% report time)',
+    deployment: ['On-Prem', 'Private VPC', 'SaaS'],
+  },
+  {
+    id: 'legacy_mod',
+    shortName: 'Legacy Modernization',
+    name: 'Digital Transformation & Legacy Modernization',
+    hubId: 'enterprise',
+    category: 'Enterprise Core & Modernization',
+    engine: 'operations',
+    tagline: 'Legacy DB virtualization (28+ relations), microservices & branded upkeep',
+    setupUsd: 34000,
+    recurringLabel: 'Maintenance & SLA',
+    gmPct: 32.9,
+    minServerTier: 4,
+    layers: ['L5', 'L6'],
+    depends: [],
+    integratesWith: ['mis_erp', 'genai_bi', 'cyber_sla'],
+    proofClient: 'Jotax Oy · Regional Banks',
+    deployment: ['On-Prem', 'Private VPC'],
+  },
+  {
+    id: 'cyber_sla',
+    shortName: 'Cyber Security & SLA',
+    name: 'Cyber Security, Resilience & 24/7 Maintenance',
+    hubId: 'infra',
+    category: 'Sovereign Infra, Edge & Security',
+    engine: 'operations',
+    tagline: 'VAPT, HIPAA/SOC 2/BB ICT v4.0, AMD SEV-SNP / Intel TDX TEE & Attack Defense',
+    setupUsd: 8600,
+    recurringLabel: '$8.6K/qtr Managed SLA',
+    gmPct: 32.6,
+    minServerTier: 4,
+    layers: ['L2', 'L5'],
+    depends: [],
+    integratesWith: ['icr_ops', 'fintech_rails', 'healthcare_erp', 'iot_edge'],
+    proofClient: 'Regulated BFSI & Health',
+    deployment: ['On-Prem', 'Private VPC'],
+  },
+  {
+    id: 'datasets',
+    shortName: 'Curated Dataset Packs',
+    name: 'Dataset Selling (Curated & Synthetic)',
+    hubId: 'infra',
+    category: 'Growth, MarTech & Data IP',
+    engine: 'operations',
+    tagline: '1.4M+ PII-stripped Bangla, Banglish, EN, HI, UR ICR, Voice & Clinical sets',
+    setupUsd: 19500,
+    recurringLabel: 'Commercial Pack License',
+    gmPct: 65.1,
+    minServerTier: 4,
+    layers: ['L3', 'L5'],
+    depends: [],
+    integratesWith: ['icr_ops', 'voice_ai', 'healthcare_erp'],
+    proofClient: 'AI Labs & Regional Fintechs',
+    deployment: ['On-Prem', 'Private VPC', 'SaaS'],
+  },
+  {
+    id: 'spatial_xr',
+    shortName: 'Spatial XR & 3D IP',
+    name: 'Spatial XR, Intelligent XR Guides & 3D IP',
+    hubId: 'xr',
+    category: 'Voice, Spatial XR & Experience',
+    engine: 'experience',
+    tagline: 'VirtuTrain360 VR, UE5 Digital Twins w/ AI Guides, VirtuED AR & Fab 3D Packs',
+    setupUsd: 38000,
+    recurringLabel: '70%–88% IP Royalties',
+    gmPct: 76.3,
+    minServerTier: 2,
+    layers: ['L3', 'L4', 'L6'],
+    depends: [],
+    integratesWith: ['healthcare_erp', 'workflow_ai', 'branding_geo', 'iot_edge'],
+    proofClient: 'Samsung Biologics · Apollo JMI',
+    deployment: ['On-Prem', 'SaaS'],
+  },
+  {
+    id: 'voice_ai',
+    shortName: 'Multilingual Voice AI',
+    name: 'Multilingual Voice AI (STT-TTS for BPO)',
+    hubId: 'voice',
+    category: 'Voice, Spatial XR & Experience',
+    engine: 'fusion',
+    tagline: 'Bangla, Banglish, EN, HI, UR (+ Arabic) Voice Agents & WhatsApp Voice ERP',
+    setupUsd: 21200,
+    recurringLabel: 'Per-min / Seat SaaS',
+    gmPct: 34.9,
+    minServerTier: 3,
+    layers: ['L3', 'L6'],
+    depends: [],
+    integratesWith: ['workflow_ai', 'fintech_rails', 'healthcare_erp', 'mis_erp'],
+    proofClient: 'BPO & Banking Support',
+    deployment: ['On-Prem', 'Private VPC', 'SaaS'],
+  },
+  {
+    id: 'workflow_ai',
+    shortName: 'Workflow & AI Agents',
+    name: 'Workflow Automation & Vertical AI Assistants',
+    hubId: 'voice',
+    category: 'AI & Data Operations',
+    engine: 'fusion',
+    tagline: 'Corrective RAG + OPA Policy-as-Code across 8 Verticals (Think·Learn·Solve)',
+    setupUsd: 18200,
+    recurringLabel: 'Support & Governance SLA',
+    gmPct: 29.7,
+    minServerTier: 3,
+    layers: ['L3', 'L5', 'L6'],
+    depends: [],
+    integratesWith: ['icr_ops', 'mis_erp', 'voice_ai', 'spatial_xr'],
+    proofClient: 'SecureBank AI · 8 Verticals',
+    deployment: ['On-Prem', 'Private VPC', 'SaaS'],
+  },
+  {
+    id: 'branding_geo',
+    shortName: 'AI-Native SEO & WebAR',
+    name: 'Digital Branding & AI-Native Marketing',
+    hubId: 'retail',
+    category: 'Growth, MarTech & Data IP',
+    engine: 'experience',
+    tagline: 'AI-Native SEO/GEO, WebAR Try-On, 3D DOOH, Event Games & 365 Exchange',
+    setupUsd: 6900,
+    recurringLabel: '$6.9K/qtr Growth Retainer',
+    gmPct: 30.4,
+    minServerTier: 4,
+    layers: ['L4', 'L6'],
+    depends: [],
+    integratesWith: ['spatial_xr', 'mis_erp', 'voice_ai'],
+    proofClient: 'ISHO (+28% conv.) · Coca-Cola',
+    deployment: ['SaaS'],
+  },
+  {
+    id: 'iot_edge',
+    shortName: 'IoT, Edge & Green AI',
+    name: 'IR4/IR5 IoT, Edge Computing & Green AI',
+    hubId: 'energy',
+    category: 'Sovereign Infra, Edge & Security',
+    engine: 'fusion',
+    tagline: '<50ms Quantized Edge Inference, IIoT Gateways (MQTT) & Carbon Planner',
+    setupUsd: 29400,
+    recurringLabel: 'Managed Edge SLA',
+    gmPct: 33.3,
+    minServerTier: 3,
+    layers: ['L1', 'L2', 'L3', 'L5'],
+    depends: ['cyber_sla'],
+    integratesWith: ['mis_erp', 'genai_bi', 'spatial_xr'],
+    proofClient: 'X Ltd (80 BaaS Swap Stations)',
+    deployment: ['On-Prem', 'Private VPC'],
+  },
+];
+
+const SERVER_TIERS: Record<
+  1 | 2 | 3 | 4,
+  { name: string; spec: string; capex: string; speed: string }
+> = {
+  1: {
+    name: 'Tier 1 — 300B Real-Time',
+    spec: 'Mac Studio M3 Ultra · 512GB Unified RAM',
+    capex: '$14.1K–$15.3K',
+    speed: '18–35+ tok/s',
+  },
+  2: {
+    name: 'Tier 2 — 200B–300B MoE Hybrid',
+    spec: '4× RTX 3090 / 2× RTX 5090 + EPYC 512GB DDR5',
+    capex: '$11.5K–$14.5K',
+    speed: '12–22 tok/s',
+  },
+  3: {
+    name: 'Tier 3 — Spenta Budget Baseline',
+    spec: '4× RTX 3090 (96GB VRAM) + 256GB DDR5 + 10TB NVMe',
+    capex: '$7.5K–$8.5K',
+    speed: '70B–120B RT',
+  },
+  4: {
+    name: 'Tier 4 — 33B–70B Efficient Edge',
+    spec: '2× RTX 3090 (48GB VRAM) + 128GB DDR5',
+    capex: '$3.2K–$4.2K',
+    speed: '25–45 tok/s',
+  },
+};
+
+const PRESETS: { name: string; badge: string; ids: string[] }[] = [
+  {
+    name: 'Regulated Banking Pack',
+    badge: 'Prime Bank Pattern',
+    ids: ['icr_ops', 'fintech_rails', 'genai_bi', 'cyber_sla'],
+  },
+  {
+    name: 'Hospital & Care Ops',
+    badge: 'Apollo JMI Pattern',
+    ids: ['healthcare_erp', 'voice_ai', 'spatial_xr', 'cyber_sla'],
+  },
+  {
+    name: 'Retail & BaaS Fleet',
+    badge: 'BEST / X Ltd Pattern',
+    ids: ['mis_erp', 'iot_edge', 'genai_bi', 'branding_geo', 'cyber_sla'],
+  },
+];
+
+const NAV_ITEMS: NavTab[] = [
+  'App Vault',
+  'Infographics',
+  'Financials',
+  'Spenta Core',
+  'The Brain',
+  'Pitch Deck',
+  'Resources',
+];
+
+export default function SpentaBrainVault() {
+  const [activeNav, setActiveNav] = useState<NavTab>('App Vault');
+  const [viewMode, setViewMode] = useState<ViewMode>('brain');
+  const [selectedIds, setSelectedIds] = useState<string[]>([
+    'icr_ops',
+    'genai_bi',
+    'mis_erp',
+    'cyber_sla',
+  ]);
+  const [hoveredAppId, setHoveredAppId] = useState<string | null>(null);
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(true);
+  const [autoNotice, setAutoNotice] = useState<string | null>(null);
+
+  const appMap = useMemo(
+    () => Object.fromEntries(SPENTA_APPS.map((a) => [a.id, a])),
+    []
+  );
+
+  // Toggle an app with Odoo-style auto-dependency resolution
+  const toggleApp = (id: string) => {
+    setSelectedIds((prev) => {
+      if (prev.includes(id)) {
+        setAutoNotice(null);
+        return prev.filter((item) => item !== id);
+      }
+      const target = appMap[id];
+      const next = new Set([...prev, id]);
+      const addedDeps: string[] = [];
+      target.depends.forEach((dep) => {
+        if (!next.has(dep)) {
+          next.add(dep);
+          addedDeps.push(appMap[dep]?.shortName || dep);
+        }
+      });
+      setAutoNotice(
+        addedDeps.length > 0
+          ? `Auto-attached required module: ${addedDeps.join(', ')}`
+          : null
+      );
+      return Array.from(next);
+    });
+  };
+
+  const applyPreset = (ids: string[], label: string) => {
+    setSelectedIds(ids);
+    setAutoNotice(`Loaded "${label}" starter stack`);
+    setDrawerOpen(true);
+  };
+
+  const selectedApps = useMemo(
+    () => selectedIds.map((id) => appMap[id]).filter(Boolean),
+    [selectedIds, appMap]
+  );
+
+  // Compute live composition metrics
+  const stackMetrics = useMemo(() => {
+    if (selectedApps.length === 0) {
+      return {
+        totalSetup: 0,
+        avgGm: 0,
+        tier: 4 as 1 | 2 | 3 | 4,
+        activeLayers: new Set<string>(),
+        synergyPairs: [] as [string, string][],
+      };
+    }
+    const totalSetup = selectedApps.reduce((s, a) => s + a.setupUsd, 0);
+    const avgGm =
+      selectedApps.reduce((s, a) => s + a.gmPct, 0) / selectedApps.length;
+
+    // Escalate server tier when heavy concurrent multimodal apps are composed
+    let minTier = Math.min(...selectedApps.map((a) => a.minServerTier)) as
+      | 1
+      | 2
+      | 3
+      | 4;
+    if (selectedApps.length >= 6 && minTier > 1) {
+      minTier = (minTier - 1) as 1 | 2 | 3 | 4;
+    }
+
+    const activeLayers = new Set<string>();
+    selectedApps.forEach((a) => a.layers.forEach((l) => activeLayers.add(l)));
+
+    const synergyPairs: [string, string][] = [];
+    const seen = new Set<string>();
+    selectedApps.forEach((a) => {
+      a.integratesWith.forEach((targetId) => {
+        if (selectedIds.includes(targetId)) {
+          const key = [a.id, targetId].sort().join('::');
+          if (!seen.has(key)) {
+            seen.add(key);
+            synergyPairs.push([a.shortName, appMap[targetId].shortName]);
+          }
+        }
+      });
+    });
+
+    return { totalSetup, avgGm, tier: minTier, activeLayers, synergyPairs };
+  }, [selectedApps, selectedIds, appMap]);
+
+  // Compute deterministic capsule positions per hub (zero overlap)
+  const positionedApps = useMemo(() => {
+    const result: { app: SpentaApp; hub: BrainHub; x: number; y: number }[] = [];
+    HUBS.forEach((hub) => {
+      const apps = SPENTA_APPS.filter((a) => a.hubId === hub.id);
+      const step = apps.length === 3 ? 52 : 56;
+      const startY = hub.y - ((apps.length - 1) * step) / 2;
+      apps.forEach((app, idx) => {
+        result.push({
+          app,
+          hub,
+          x: hub.side === 'left' ? 16 : 1032,
+          y: startY + idx * step,
+        });
+      });
+    });
+    return result;
+  }, []);
+
+  const hoveredApp = hoveredAppId ? appMap[hoveredAppId] : null;
+  const activeLayersDisplay = hoveredApp
+    ? new Set(hoveredApp.layers)
+    : stackMetrics.activeLayers;
+
+  const groupedByCategory = useMemo(() => {
+    const groups: Record<string, SpentaApp[]> = {};
+    SPENTA_APPS.forEach((app) => {
+      if (!groups[app.category]) groups[app.category] = [];
+      groups[app.category].push(app);
+    });
+    return Object.entries(groups);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-[#F4F7F5] text-[#07130F] font-sans flex flex-col">
+      {/* Top Navigation Bar — Sovereign Forest Chrome */}
+      <header className="sticky top-0 z-30 bg-[#07130F] text-white border-b border-emerald-900/50">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3 shrink-0">
+            <img
+              src="https://spenta.tech/wp-content/uploads/2025/11/Untitled-design-20.png"
+              alt="Spenta Technology"
+              className="h-8 w-auto object-contain brightness-110"
+            />
+            <span className="hidden md:inline-block text-xs font-mono tracking-wider text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded">
+              SOVEREIGN OS
+            </span>
+          </div>
+
+          <nav className="hidden lg:flex items-center gap-1">
+            {NAV_ITEMS.map((item) => {
+              const active = activeNav === item;
+              return (
+                <button
+                  key={item}
+                  onClick={() => {
+                    setActiveNav(item);
+                    if (item === 'The Brain') setViewMode('brain');
+                    if (item === 'App Vault') setViewMode('grid');
+                  }}
+                  className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                    active
+                      ? 'bg-[#1EB56A]/20 text-[#1EB56A]'
+                      : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  {item}
+                </button>
+              );
+            })}
+          </nav>
+
+          <button
+            onClick={() => setDrawerOpen((v) => !v)}
+            className="flex items-center gap-2 bg-[#E11D48] hover:bg-[#BE123C] text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-sm transition-colors cursor-pointer"
+          >
+            <span>Stack Composer</span>
+            <span className="font-mono bg-black/25 px-2 py-0.5 rounded text-xs">
+              {selectedIds.length}
+            </span>
+          </button>
+        </div>
+      </header>
+
+      {/* Sub-Header Controls & Starter Recipes */}
+      <div className="bg-white border-b border-slate-200">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <div className="inline-flex rounded-lg bg-[#EEF3F1] p-1">
+              <button
+                onClick={() => setViewMode('brain')}
+                className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all cursor-pointer ${
+                  viewMode === 'brain'
+                    ? 'bg-[#07130F] text-white shadow-sm'
+                    : 'text-slate-700 hover:text-[#07130F]'
+                }`}
+              >
+                AI Brain Map (SVG)
+              </button>
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all cursor-pointer ${
+                  viewMode === 'grid'
+                    ? 'bg-[#07130F] text-white shadow-sm'
+                    : 'text-slate-700 hover:text-[#07130F]'
+                }`}
+              >
+                Odoo-Style App Vault (13)
+              </button>
+            </div>
+            <span className="hidden sm:inline text-xs text-slate-500">
+              Click any app capsule or tile to compose a sovereign stack.
+            </span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              1-Click Recipes:
+            </span>
+            {PRESETS.map((preset) => (
+              <button
+                key={preset.name}
+                onClick={() => applyPreset(preset.ids, preset.name)}
+                className="text-xs px-2.5 py-1 rounded-full border border-emerald-700/20 bg-emerald-50 hover:bg-emerald-100 text-[#065F46] font-medium transition-colors cursor-pointer"
+              >
+                {preset.name}
+              </button>
+            ))}
+            {selectedIds.length > 0 && (
+              <button
+                onClick={() => {
+                  setSelectedIds([]);
+                  setAutoNotice(null);
+                }}
+                className="text-xs px-2 py-1 text-slate-500 hover:text-[#E11D48] cursor-pointer"
+              >
+                Clear
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Main Workspace + Live Stack Drawer */}
+      <div className="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-6 flex flex-col lg:flex-row gap-6">
+        <main className="flex-1 min-w-0">
+          {autoNotice && (
+            <div className="mb-4 px-4 py-2.5 rounded-lg bg-emerald-950 text-emerald-100 text-xs font-mono flex items-center justify-between">
+              <span>⚡ {autoNotice}</span>
+              <button
+                onClick={() => setAutoNotice(null)}
+                className="text-emerald-400 hover:text-white ml-4"
+              >
+                ✕
+              </button>
+            </div>
+          )}
+
+          {viewMode === 'brain' ? (
+            /* INTERACTIVE CLICKABLE AI BRAIN SVG */
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-3 sm:p-4 overflow-x-auto">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-2 px-2">
+                <div>
+                  <h1 className="text-lg font-bold text-[#07130F]">
+                    The Spenta Sovereign AI Brain — Composable Ecosystem
+                  </h1>
+                  <p className="text-xs text-slate-600">
+                    Left Hemisphere: Operations Engine (On-Prem AI, ERP, Fintech, Security) · Right Hemisphere: Experience & IR4/IR5 Engine (XR, Voice, Retail, Edge)
+                  </p>
+                </div>
+                <div className="flex items-center gap-3 text-[11px] font-mono">
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#1EB56A]" /> Selected in Stack
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-slate-300" /> Available Module
+                  </span>
+                </div>
+              </div>
+
+              <svg
+                viewBox="0 0 1280 760"
+                className="w-full min-w-[920px] h-auto select-none"
+                role="img"
+                aria-label="Spenta Sovereign AI Brain Interactive App Map"
+              >
+                <defs>
+                  <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#1EB56A" stopOpacity="0.28" />
+                    <stop offset="100%" stopColor="#07130F" stopOpacity="0" />
+                  </radialGradient>
+                </defs>
+
+                {/* Subtle background halo */}
+                <circle cx="640" cy="380" r="165" fill="url(#coreGlow)" />
+
+                {/* 1. Trunks: Center Brain -> 8 Domain Hubs */}
+                {HUBS.map((hub) => {
+                  const hubApps = SPENTA_APPS.filter((a) => a.hubId === hub.id);
+                  const isActiveHub = hubApps.some((a) => selectedIds.includes(a.id));
+                  const startX = hub.side === 'left' ? 545 : 735;
+                  const endX = hub.side === 'left' ? 485 : 795;
+                  const c1x = hub.side === 'left' ? 520 : 760;
+                  const pathD = `M ${startX} 380 C ${c1x} 380, ${c1x} ${hub.y}, ${endX} ${hub.y}`;
+
+                  return (
+                    <g key={`trunk-${hub.id}`}>
+                      <path
+                        d={pathD}
+                        fill="none"
+                        stroke={isActiveHub ? hub.accent : '#CBD5E1'}
+                        strokeWidth={isActiveHub ? 4 : 2.5}
+                        strokeLinecap="round"
+                        className="transition-all duration-300"
+                      />
+                      {isActiveHub && (
+                        <path
+                          d={pathD}
+                          fill="none"
+                          stroke="#FFFFFF"
+                          strokeWidth="2"
+                          strokeDasharray="6 14"
+                          opacity="0.75"
+                        >
+                          <animate
+                            attributeName="stroke-dashoffset"
+                            from="40"
+                            to="0"
+                            dur="1.4s"
+                            repeatCount="indefinite"
+                          />
+                        </path>
+                      )}
+                    </g>
+                  );
+                })}
+
+                {/* 2. Branches: 8 Domain Hubs -> 13 Clickable App Capsules */}
+                {positionedApps.map(({ app, hub, x, y }) => {
+                  const isSelected = selectedIds.includes(app.id);
+                  const isHovered = hoveredAppId === app.id;
+                  const isSynergy =
+                    hoveredApp && hoveredApp.integratesWith.includes(app.id);
+
+                  const hubEdgeX = hub.side === 'left' ? 300 : 980;
+                  const capEdgeX = hub.side === 'left' ? x + 232 : x;
+                  const midX = (hubEdgeX + capEdgeX) / 2;
+                  const branchPath = `M ${hubEdgeX} ${hub.y} C ${midX} ${hub.y}, ${midX} ${y}, ${capEdgeX} ${y}`;
+
+                  return (
+                    <g key={`app-node-${app.id}`}>
+                      <path
+                        d={branchPath}
+                        fill="none"
+                        stroke={
+                          isSelected || isHovered
+                            ? hub.accent
+                            : isSynergy
+                            ? '#F59E0B'
+                            : '#CBD5E1'
+                        }
+                        strokeWidth={isSelected || isHovered ? 2.5 : 1.5}
+                        strokeDasharray={isSynergy && !isSelected ? '4 4' : undefined}
+                      />
+
+                      {/* Clickable App Capsule */}
+                      <g
+                        onClick={() => toggleApp(app.id)}
+                        onMouseEnter={() => setHoveredAppId(app.id)}
+                        onMouseLeave={() => setHoveredAppId(null)}
+                        className="cursor-pointer"
+                      >
+                        <rect
+                          x={x}
+                          y={y - 21}
+                          width={232}
+                          height={42}
+                          rx={10}
+                          fill={isSelected ? '#07130F' : '#FFFFFF'}
+                          stroke={
+                            isSelected
+                              ? '#1EB56A'
+                              : isSynergy
+                              ? '#F59E0B'
+                              : isHovered
+                              ? '#0D9488'
+                              : '#CBD5E1'
+                          }
+                          strokeWidth={isSelected || isHovered ? 2.2 : 1.3}
+                        />
+                        {/* Status Dot */}
+                        <circle
+                          cx={x + 16}
+                          cy={y}
+                          r={5}
+                          fill={isSelected ? '#1EB56A' : isSynergy ? '#F59E0B' : '#CBD5E1'}
+                        />
+                        {/* App Name */}
+                        <text
+                          x={x + 29}
+                          y={y - 3}
+                          fill={isSelected ? '#FFFFFF' : '#07130F'}
+                          fontSize="12.5"
+                          fontWeight="700"
+                        >
+                          {app.shortName}
+                        </text>
+                        {/* Pricing / GM micro-meta */}
+                        <text
+                          x={x + 29}
+                          y={y + 12}
+                          fill={isSelected ? '#6EE7B7' : '#64748B'}
+                          fontSize="10"
+                          fontFamily="monospace"
+                        >
+                          ${(app.setupUsd / 1000).toFixed(1)}K · {app.gmPct}% GM
+                        </text>
+                        {/* Add/Check indicator */}
+                        <text
+                          x={x + 216}
+                          y={y + 4}
+                          textAnchor="middle"
+                          fill={isSelected ? '#1EB56A' : '#94A3B8'}
+                          fontSize="14"
+                          fontWeight="700"
+                        >
+                          {isSelected ? '✓' : '+'}
+                        </text>
+                      </g>
+                    </g>
+                  );
+                })}
+
+                {/* 3. Eight Domain Hub Pills */}
+                {HUBS.map((hub) => {
+                  const hubApps = SPENTA_APPS.filter((a) => a.hubId === hub.id);
+                  const selectedCount = hubApps.filter((a) =>
+                    selectedIds.includes(a.id)
+                  ).length;
+                  const x = hub.side === 'left' ? 300 : 795;
+
+                  return (
+                    <g key={`hub-${hub.id}`}>
+                      <rect
+                        x={x}
+                        y={hub.y - 22}
+                        width={185}
+                        height={44}
+                        rx={12}
+                        fill={selectedCount > 0 ? '#ECFDF5' : '#F8FAFC'}
+                        stroke={selectedCount > 0 ? hub.accent : '#94A3B8'}
+                        strokeWidth={selectedCount > 0 ? 2 : 1.2}
+                      />
+                      <text
+                        x={x + 12}
+                        y={hub.y - 3}
+                        fill={hub.accent}
+                        fontSize="10"
+                        fontWeight="800"
+                        fontFamily="monospace"
+                      >
+                        HUB {hub.num}
+                      </text>
+                      <text
+                        x={x + 12}
+                        y={hub.y + 13}
+                        fill="#07130F"
+                        fontSize="12.5"
+                        fontWeight="700"
+                      >
+                        {hub.label}
+                      </text>
+                      {selectedCount > 0 && (
+                        <g>
+                          <circle cx={x + 166} cy={hub.y} r={10} fill={hub.accent} />
+                          <text
+                            x={x + 166}
+                            y={hub.y + 4}
+                            textAnchor="middle"
+                            fill="#FFFFFF"
+                            fontSize="10"
+                            fontWeight="700"
+                            fontFamily="monospace"
+                          >
+                            {selectedCount}
+                          </text>
+                        </g>
+                      )}
+                    </g>
+                  );
+                })}
+
+                {/* 4. Center Node: Spenta Sovereign AI Brain (L1-L6 Core) */}
+                <g>
+                  <circle
+                    cx="640"
+                    cy="380"
+                    r="102"
+                    fill="#07130F"
+                    stroke="#1EB56A"
+                    strokeWidth="3"
+                  />
+                  {/* Left & Right Brain Hemisphere Arcs */}
+                  <path
+                    d="M 634 316 C 594 316, 588 366, 610 384 C 588 400, 600 442, 634 442 Z"
+                    fill="#1EB56A"
+                    fillOpacity="0.18"
+                    stroke="#1EB56A"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M 646 316 C 686 316, 692 366, 670 384 C 692 400, 680 442, 646 442 Z"
+                    fill="#0D9488"
+                    fillOpacity="0.22"
+                    stroke="#14B8A6"
+                    strokeWidth="2"
+                  />
+                  <text
+                    x="640"
+                    y="354"
+                    textAnchor="middle"
+                    fill="#6EE7B7"
+                    fontSize="10"
+                    fontWeight="700"
+                    fontFamily="monospace"
+                    letterSpacing="1.5"
+                  >
+                    SPENTA CORE
+                  </text>
+                  <text
+                    x="640"
+                    y="377"
+                    textAnchor="middle"
+                    fill="#FFFFFF"
+                    fontSize="16"
+                    fontWeight="800"
+                  >
+                    AI BRAIN
+                  </text>
+                  <text
+                    x="640"
+                    y="395"
+                    textAnchor="middle"
+                    fill="#94A3B8"
+                    fontSize="9.5"
+                    fontFamily="monospace"
+                  >
+                    0.88 HITL · OPA · ON-PREM
+                  </text>
+
+                  {/* Live L1-L6 Sovereign Layer Pills inside Core */}
+                  {['L1', 'L2', 'L3', 'L4', 'L5', 'L6'].map((layer, idx) => {
+                    const active = activeLayersDisplay.has(layer);
+                    const lx = 576 + idx * 22;
+                    return (
+                      <g key={layer}>
+                        <rect
+                          x={lx}
+                          y={412}
+                          width={18}
+                          height={16}
+                          rx={4}
+                          fill={active ? '#1EB56A' : '#1E293B'}
+                        />
+                        <text
+                          x={lx + 9}
+                          y={423}
+                          textAnchor="middle"
+                          fill={active ? '#07130F' : '#64748B'}
+                          fontSize="8.5"
+                          fontWeight="800"
+                          fontFamily="monospace"
+                        >
+                          {layer}
+                        </text>
+                      </g>
+                    );
+                  })}
+                </g>
+              </svg>
+            </div>
+          ) : (
+            /* ODOO-STYLE CATEGORIZED APP VAULT GRID */
+            <div className="space-y-6">
+              {groupedByCategory.map(([category, apps]) => (
+                <section key={category}>
+                  <h2 className="text-sm font-bold uppercase tracking-wider text-[#065F46] mb-3 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#1EB56A]" />
+                    {category}
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                    {apps.map((app) => {
+                      const isSelected = selectedIds.includes(app.id);
+                      return (
+                        <div
+                          key={app.id}
+                          onClick={() => toggleApp(app.id)}
+                          className={`rounded-xl p-4 border transition-all cursor-pointer flex flex-col justify-between ${
+                            isSelected
+                              ? 'bg-[#07130F] text-white border-[#1EB56A] shadow-md ring-1 ring-[#1EB56A]'
+                              : 'bg-white text-[#07130F] border-slate-200 hover:border-[#0D9488] hover:shadow-sm'
+                          }`}
+                        >
+                          <div>
+                            <div className="flex items-start justify-between gap-2 mb-2">
+                              <span
+                                className={`text-[10px] font-mono uppercase px-2 py-0.5 rounded ${
+                                  isSelected
+                                    ? 'bg-[#1EB56A]/20 text-[#6EE7B7]'
+                                    : 'bg-[#EEF3F1] text-[#065F46]'
+                                }`}
+                              >
+                                {app.engine} engine
+                              </span>
+                              <span
+                                className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                                  isSelected
+                                    ? 'bg-[#1EB56A] text-[#07130F]'
+                                    : 'bg-slate-100 text-slate-500'
+                                }`}
+                              >
+                                {isSelected ? '✓' : '+'}
+                              </span>
+                            </div>
+                            <h3 className="font-bold text-sm mb-1">{app.name}</h3>
+                            <p
+                              className={`text-xs leading-relaxed mb-3 ${
+                                isSelected ? 'text-slate-300' : 'text-slate-600'
+                              }`}
+                            >
+                              {app.tagline}
+                            </p>
+                          </div>
+
+                          <div
+                            className={`pt-3 border-t flex items-center justify-between text-[11px] font-mono ${
+                              isSelected
+                                ? 'border-emerald-900 text-emerald-300'
+                                : 'border-slate-100 text-slate-600'
+                            }`}
+                          >
+                            <span>${(app.setupUsd / 1000).toFixed(1)}K build</span>
+                            <span>{app.gmPct}% GM</span>
+                            <span>Tier {app.minServerTier}</span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </section>
+              ))}
+            </div>
+          )}
+        </main>
+
+        {/* Live Stack Composer Sidebar / Drawer */}
+        {drawerOpen && (
+          <aside className="w-full lg:w-[360px] shrink-0 bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col justify-between h-fit lg:sticky lg:top-20">
+            <div>
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div>
+                  <h2 className="font-bold text-base text-[#07130F]">
+                    Composed Spenta Stack
+                  </h2>
+                  <p className="text-xs text-slate-500">
+                    Unified RBAC · Kafka/PG Bus · 0.88 HITL
+                  </p>
+                </div>
+                <span className="font-mono text-xs bg-emerald-100 text-[#065F46] px-2.5 py-1 rounded-full font-bold">
+                  {selectedApps.length} / 13
+                </span>
+              </div>
+
+              {/* Selected Apps List */}
+              <div className="my-4 space-y-2 max-h-56 overflow-y-auto pr-1">
+                {selectedApps.length === 0 ? (
+                  <p className="text-xs text-slate-500 py-4 text-center">
+                    Select modules from the AI Brain or App Vault to compose your architecture.
+                  </p>
+                ) : (
+                  selectedApps.map((app) => (
+                    <div
+                      key={app.id}
+                      className="flex items-center justify-between bg-[#F4F7F5] px-3 py-2 rounded-lg text-xs"
+                    >
+                      <div className="min-w-0 pr-2">
+                        <div className="font-semibold text-[#07130F] truncate">
+                          {app.shortName}
+                        </div>
+                        <div className="font-mono text-[10px] text-slate-500">
+                          ${(app.setupUsd / 1000).toFixed(1)}K · {app.proofClient}
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => toggleApp(app.id)}
+                        className="text-slate-400 hover:text-[#E11D48] font-bold px-1 cursor-pointer"
+                        title="Remove module"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  ))
+                )}
+              </div>
+
+              {/* Active Cross-App Synergies */}
+              {stackMetrics.synergyPairs.length > 0 && (
+                <div className="mb-4 p-3 rounded-xl bg-teal-50/70 border border-teal-200/70">
+                  <div className="text-[11px] font-bold uppercase tracking-wide text-[#0D9488] mb-1.5">
+                    Verified Native Integrations ({stackMetrics.synergyPairs.length})
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {stackMetrics.synergyPairs.slice(0, 5).map(([a, b]) => (
+                      <span
+                        key={`${a}-${b}`}
+                        className="text-[10px] font-mono bg-white border border-teal-200 text-teal-900 px-2 py-0.5 rounded"
+                      >
+                        {a} ↔ {b}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Recommended Sovereign Hardware Tier */}
+              {selectedApps.length > 0 && (
+                <div className="mb-4 p-3 rounded-xl bg-[#07130F] text-white">
+                  <div className="flex items-center justify-between text-[10px] font-mono text-emerald-400 mb-1">
+                    <span>RECOMMENDED ON-PREM SERVER</span>
+                    <span>{SERVER_TIERS[stackMetrics.tier].speed}</span>
+                  </div>
+                  <div className="text-xs font-bold">
+                    {SERVER_TIERS[stackMetrics.tier].name}
+                  </div>
+                  <div className="text-[11px] text-slate-300 mt-0.5">
+                    {SERVER_TIERS[stackMetrics.tier].spec}
+                  </div>
+                  <div className="text-[11px] font-mono text-amber-400 mt-1">
+                    Est. Hardware CapEx: {SERVER_TIERS[stackMetrics.tier].capex}
+                  </div>
+                </div>
+              )}
+
+              {/* Commercial Rollup */}
+              <div className="grid grid-cols-2 gap-2 mb-4">
+                <div className="p-2.5 rounded-lg bg-[#EEF3F1]">
+                  <div className="text-[10px] text-slate-500 uppercase">Est. Build Scope</div>
+                  <div className="font-mono text-base font-bold text-[#07130F]">
+                    ${(stackMetrics.totalSetup / 1000).toFixed(1)}K
+                  </div>
+                </div>
+                <div className="p-2.5 rounded-lg bg-[#EEF3F1]">
+                  <div className="text-[10px] text-slate-500 uppercase">Blended GM</div>
+                  <div className="font-mono text-base font-bold text-[#065F46]">
+                    {stackMetrics.avgGm.toFixed(1)}%
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button
+              disabled={selectedApps.length === 0}
+              onClick={() =>
+                alert(
+                  `Spenta Stack Brief Ready (${selectedApps.length} modules)\nServer: ${
+                    SERVER_TIERS[stackMetrics.tier].name
+                  }\nEst. Build: $${stackMetrics.totalSetup.toLocaleString()}\nContact: hello@spenta.tech`
+                )
+              }
+              className="w-full py-2.5 rounded-xl bg-[#E11D48] hover:bg-[#BE123C] disabled:bg-slate-300 text-white text-sm font-semibold transition-colors cursor-pointer"
+            >
+              Export Architecture & Request Proposal
+            </button>
+          </aside>
+        )}
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Remix Spentech Pitching WebApp",
+  "description": "Spentech Pitching WebApp: Odoo+Linear+Github+XR+AI+Others Fusion WebApp for Multi-purposes Tools Integration Focused to Investors.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

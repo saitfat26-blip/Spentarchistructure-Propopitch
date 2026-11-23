@@ -1,0 +1,130 @@
+You are a Principal Frontend Architect and Creative Technologist. Build a production-grade, interactive web platform for **Spenta Technology (spenta.tech)** — an Odoo-inspired composable enterprise platform where clients and investors can browse Spenta's 13 sovereign AI, ERP, Fintech, Voice, and Spatial XR apps, mix and compose them into verified working stacks, explore an interactive 3D/SVG "AI Brain", inspect reconciled 5-year financials, and step through the master investor deck.
+
+====================================================================
+1. TECH STACK & ENGINEERING REQUIREMENTS
+====================================================================
+- Framework: Next.js 14/15 (App Router) with strict TypeScript (`strict: true`).
+- Styling: Tailwind CSS + Shadcn UI component architecture (`Button`, `Card`, `Badge`, `Tabs`, `Sheet`, `Dialog`, `Slider`, `Switch`, `Tooltip`, `Command`, `Table`, `ScrollArea`).
+- 3D Graphics: `three`, `@react-three/fiber`, and `@react-three/drei` (loaded via `next/dynamic` with `{ ssr: false }` and graceful WebGL fallback) for an interactive 3D Sovereign Neural Brain / Spatial Core visualizer.
+- Charts & Diagrams: `recharts` for interactive financial projections & margin charts + custom interactive SVG for the radial 8-hub "Spenta AI Brain" mind-map.
+- Motion & Icons: `framer-motion` + `lucide-react`.
+- Zero Lorem Ipsum: Every metric, app, client proof point, hardware spec, and financial series must use the exact Spenta data provided below.
+
+====================================================================
+2. BRAND IDENTITY & VISUAL DESIGN SYSTEM ("Sovereign Forest & Slate")
+====================================================================
+- Official Logo URL: `https://spenta.tech/wp-content/uploads/2025/11/Untitled-design-20.png` (use in dark navbar with crisp contrast and in light headers/footers; do NOT replace with generic placeholder logos).
+- Color Tokens (WCAG AAA high-contrast compliance):
+  - Deep Forest Chrome / Dark Hero / 3D Canvas: `#07130F`
+  - Soft Sage Mist Workspace Canvas: `#F4F7F5`
+  - Crisp Surface White (Cards, Tables, Financial Charts): `#FFFFFF`
+  - Elevated Neutral Surface: `#EEF3F1`
+  - Primary Emerald Accent (Active apps, verified ≥0.88 HITL pass): `#1EB56A` (dark text variant `#065F46`)
+  - Architecture Teal (L1–L6 Sovereign Core & integration links): `#0D9488`
+  - Governance Amber (HITL human review <0.88 & sensitivity notices): `#F59E0B`
+  - Action Crimson (Primary CTAs, Stack Composer trigger, SLA alerts only): `#E11D48` (hover `#BE123C`)
+- Typography:
+  - Headings & UI: `Plus Jakarta Sans`
+  - Financial Figures, Rates, Hardware Specs, Confidence Scores: `JetBrains Mono`
+
+====================================================================
+3. GLOBAL NAVIGATION & PERSISTENT STACK COMPOSER
+====================================================================
+Create a sticky `#07130F` top navigation bar containing:
+- Left: Official Spenta leaf-circuit logo + `SOVEREIGN OS` monospace badge.
+- Center Navigation Items (exact labels):
+  1. `App Vault` (Default Home — Odoo-style categorized catalog + Brain Map toggle)
+  2. `Infographics` (Visual architecture & ecosystem gallery)
+  3. `Financials` (Interactive FY2027–FY2031 P&L, 13-Product GM Matrix, Scenario Toggles)
+  4. `Spenta Core` (L1–L6 Fusion Stack, 4-Tier Server PC Configurator, Dual-Shore Pods)
+  5. `The Brain` (Interactive 3D Three.js + SVG AI Brain, Blueprint Explorer, 0.88 HITL Gate Simulator)
+  6. `Pitch Deck` (Interactive 18-Slide Master Investor Deck viewer with keyboard arrows)
+  7. `Resources` (Enterprise Case Studies, Compliance Briefs, Dataset/3D IP & Proposal Form)
+- Right: Crimson CTA button `Stack Composer (N)` that opens a persistent Shadcn `Sheet` (slide-over drawer) from ANY page.
+- Global State: Use React Context or Zustand (`useStackStore`) persisted to `localStorage` so selected apps remain synchronized across `App Vault`, `The Brain`, `Spenta Core`, and the `Stack Composer` drawer.
+
+====================================================================
+4. COMPLETE DATA MANIFEST (SINGLE SOURCE OF TRUTH: `src/data/spentaManifest.ts`)
+====================================================================
+A. THE 13 COMPOSABLE SPENTA APPS (Organized into 6 Odoo-style Categories & Mapped to 8 Radial Brain Hubs):
+1. `healthcare_erp` — AI Healthcare ERP & Clinical AI | Hub 01: Healthcare & Bio | Cat: Vertical Industry Suites | Engine: Operations | Core: Care Ops, AI Shift Handover, Smart Rostering (HL7/FHIR), AI GP, Medical Image Reader, Rx OCR | Model: $19.8K setup + $48K/yr ARR ($45/bed/mo; $81K/yr per 150-bed site) | GM: 58.0% | Min Server: Tier 3 | Depends: `cyber_sla` | Proof: Apollo JMI, LABAID.
+2. `icr_ops` — Document Intelligence (ICR) & Bulk Data Ops | Hub 02: Banking & Fintech | Cat: AI & Data Operations | Engine: Operations | Core: Self-hosted LLaMA 3.2 Vision + Tesseract + LayoutLMv3, React Digital Twin UI (<30s/form, 0.88 HITL gate), Bulk Deduplication & Reconciliation | Model: $48.5K build + SaaS | GM: 33.2% | Min Server: Tier 2 | Depends: `cyber_sla` | Proof: Prime Bank (BankOCR).
+3. `fintech_rails` — Fintech Suite (Digital Wallet, Crypto-Wallet & MFS) | Hub 02: Banking & Fintech | Cat: Vertical Industry Suites | Engine: Operations | Core: Custodial/Non-Custodial Wallets, MFS rails, KYC/AML & TEE hardening | Model: $39.8K build + SLA | GM: 33.7% | Min Server: Tier 3 | Depends: `cyber_sla` | Proof: bKash, LankaBangla.
+4. `mis_erp` — Management Information System (MIS) & SaaS Systems | Hub 03: Enterprise Core & BI | Cat: Enterprise Core & Modernization | Engine: Operations | Core: Stock MIS, Asset Tracking, HRM/RBAC, Work Orders, Branch Maps, HelloKhata Voice | Model: $20.4K modular license | GM: 29.4% | Min Server: Tier 4 | Proof: BEST (65+ Showrooms).
+5. `genai_bi` — BI Dashboard w/ Conversational GenAI | Hub 03: Enterprise Core & BI | Cat: AI & Data Operations | Engine: Operations | Core: Prompt-driven on-the-fly ERP/MIS insights over PostgreSQL/Kafka + Power BI/React | Model: $22.3K setup + retainer | GM: 29.1% | Min Server: Tier 3 | Depends: `mis_erp` | Proof: Jotax Oy (-80% reporting time, 96% accuracy).
+6. `legacy_mod` — Digital Transformation & Legacy Modernization | Hub 03: Enterprise Core & BI | Cat: Enterprise Core & Modernization | Engine: Operations | Core: Legacy DB virtualization (28+ virtual relations), microservices, cloud/on-prem migration, branded maintenance | Model: $22K–$46.5K (baseline $34K) | GM: 32.9% | Min Server: Tier 4 | Proof: Jotax Oy, Mid-Market Silos.
+7. `cyber_sla` — Cyber Security, Resilience & 24/7 Maintenance | Hub 04: Security & Data IP | Cat: Sovereign Infra, Edge & Security | Engine: Operations | Core: VAPT, Attack Avoidance/Mitigation, HIPAA/SOC 2/ISO 27001/BB ICT v4.0, AMD SEV-SNP / Intel TDX TEE, 24/7 SLA | Model: $8.6K/qtr SLA | GM: 32.6% | Min Server: Tier 4 | Proof: Regulated BFSI & Healthcare.
+8. `datasets` — Curated & Synthetic Dataset Packs | Hub 04: Security & Data IP | Cat: Growth, MarTech & Data IP | Engine: Operations | Core: 1.4M+ PII-stripped Bangla, Banglish, EN, HI, UR handwritten ICR, voice, clinical & leaf vision sets + domain RAG | Model: $19.5K/pack | GM: 65.1% | Min Server: Tier 4 | Proof: Regional AI Labs & Fintechs.
+9. `spatial_xr` — Spatial XR, Intelligent XR Guides & 3D IP | Hub 05: Spatial XR & 3D IP | Cat: Voice, Spatial XR & Experience | Engine: Experience | Core: VirtuTrain360 VR, UE5/Unity Digital Twins w/ AI Guides, 3D Previz, VirtuED Medical AR, Heritage Twins, Epic Fab/UEFN packs | Model: Enterprise build ($38K baseline) + 70%–88% IP royalties | GM: 76.3% | Min Server: Tier 2 | Proof: Samsung Biologics, Apollo JMI, Puthia Rajbari, Old Central Jail.
+10. `voice_ai` — Multilingual Voice AI (STT-TTS for Customer Care & BPO) | Hub 06: Voice & Assistants | Cat: Voice, Spatial XR & Experience | Engine: Fusion | Core: On-prem/hybrid STT-TTS in Bangla, Banglish, EN, HI, UR (+ Arabic roadmap), WhatsApp Business Voice ERP | Model: $21.2K setup + per-min/seat SaaS | GM: 34.9% | Min Server: Tier 3 | Proof: BPO & Banking Call Centers.
+11. `workflow_ai` — Workflow Automation & Vertical AI Assistants | Hub 06: Voice & Assistants | Cat: AI & Data Operations | Engine: Fusion | Core: Multi-agent Corrective RAG + OPA policy-as-code across 8 verticals (E-Commerce, Banking, Education, Medical, CRM/HRM, Call Center, Tutor, Virtual Tour) | Model: $18.2K sprint + SLA | GM: 29.7% | Min Server: Tier 3 | Proof: SecureBank AI.
+12. `branding_geo` — Digital Branding & AI-Native Marketing | Hub 07: Retail & BEST | Cat: Growth, MarTech & Data IP | Engine: Experience | Core: Digital Branding, AI-Native SEO/GEO, WebAR Try-On, 3D DOOH, Event Attraction Games, 365 Exchange Circular CRM | Model: $6.9K/qtr retainer | GM: 30.4% | Min Server: Tier 4 | Proof: ISHO (+28% conversion, -22% returns), Coca-Cola, BEST.
+13. `iot_edge` — IR4/IR5 IoT, Edge Computing & Climate-Friendly Green AI | Hub 08: IoT, Edge & X Ltd | Cat: Sovereign Infra, Edge & Security | Engine: Fusion | Core: <50ms quantized edge inference, IIoT gateways (Wasm/MQTT), Green AI Carbon Emission Planner | Model: $29.4K build + edge SLA | GM: 33.3% | Min Server: Tier 3 | Depends: `cyber_sla` | Proof: X Ltd (80 BaaS Swap Stations / 480 EVs).
+
+B. 1-CLICK STARTER RECIPES:
+- "Regulated Banking Pack" (Prime Bank Pattern): `icr_ops`, `fintech_rails`, `genai_bi`, `cyber_sla`
+- "Hospital & Care Ops Pack" (Apollo JMI Pattern): `healthcare_erp`, `voice_ai`, `spatial_xr`, `cyber_sla`
+- "Retail & BaaS Fleet Pack" (BEST & X Ltd Pattern): `mis_erp`, `iot_edge`, `genai_bi`, `branding_geo`, `cyber_sla`
+
+C. L1–L6 SOVEREIGN FUSION STACK:
+- L1: Sensing & IIoT Gateways (Wasm/MQTT, EV/BaaS & Clinical sensors)
+- L2: Edge Compute & Hardware TEEs (<50ms latency, AMD SEV-SNP / Intel TDX isolation)
+- L3: Sovereign Neural Core (Self-hosted LLaMA 3.2 Vision, LayoutLMv3, Whisper, Quantized Green AI)
+- L4: Spatial Fusion Engine (UE5, Unity, WebAR, Three.js Digital Twins)
+- L5: Governance & Data Bus (PostgreSQL, Kafka, Vector DB, OPA Policy-as-Code, 0.88 Confidence HITL Gate)
+- L6: Omni-Channel UI & Delivery (React Web, Mobile, WhatsApp Business API, VR/AR Headsets)
+
+D. 4-TIER ON-PREMISE SERVER PC HARDWARE MATRIX:
+- Tier 1 (300B Real-Time): Apple Mac Studio M3 Ultra (512GB Unified RAM, 80-core GPU, 819 GB/s) — $14,100–$15,300 | 18–35+ tok/s.
+- Tier 2 (200B–300B MoE Hybrid): 4× RTX 3090 (96GB) or 2× RTX 5090 (64GB) + AMD EPYC 9004 384–512GB DDR5 ECC + 10TB NVMe + 50TB backup — $11,500–$14,500 | 12–22 tok/s.
+- Tier 3 (Spenta Budget Baseline, 70B–120B RT / 200B MoE): 4× used RTX 3090 (96GB VRAM) + 256GB DDR5 + 2TB 990 PRO + 8TB U.2 NVMe + 50TB HDD — $7,500–$8,500.
+- Tier 4 (33B–70B Efficient Production): 2× used RTX 3090 (48GB VRAM) + 128GB DDR5 + 4TB NVMe + 1200W PSU — $3,200–$4,200 | 25–45 tok/s.
+
+E. RECONCILED FINANCIAL MODEL (FY2027–FY2031):
+- Capital Raise: $500,000 SAFE ($4.5M Valuation Cap, 20% discount), targeting $60K MRR within 12 months.
+- Operating Base: 20-FTE Dhaka R&D Hub ($11.50/hr blended loaded cost; $540K / 64.8M BDT Y1 budget) + San Jose & Australia client orchestration (40%–60% cost edge vs. Western agencies).
+- Conservative 5-Year Trajectory:
+  - Y1 (FY2027): $672K Revenue
+  - Y2 (FY2028): $1.45M Revenue (covers $585K escalated burn)
+  - Y3 (FY2029): $2.65M Revenue
+  - Y4 (FY2030): $4.10M Revenue (3.57× cumulative cash return)
+  - Y5 (FY2031): $5.85M Revenue ($4.252M cumulative EBITDA, $3.189M cumulative Net Profit, 6.38× 5-year net return on $500K SAFE)
+- Client ROI Framing: Conservative 250%–350% client ROI (with Prime Bank/SecureBank banking proofs at 450%–580%).
+
+====================================================================
+5. PAGE-BY-PAGE FUNCTIONAL SPECIFICATIONS
+====================================================================
+1. `/app-vault` (and `/` default):
+   - Toggle between **Odoo-Style Categorized App Grid** (with search, Engine filter pills, Deployment Mode filter pills, 1-click Starter Recipes) and **Interactive Radial AI Brain SVG** (8 hubs, 13 clickable capsules, animated dashed data pulses flowing into the central L1–L6 Brain Core).
+   - Clicking an app runs live **Dependency Resolution** (auto-attaching required modules with a toast notification), highlights native cross-app synergies, and updates the persistent **Stack Composer Drawer** (showing selected modules, live synergy badges, auto-recommended On-Prem Server Tier, estimated build scope, blended Gross Margin, and an "Export Stack JSON / Request Proposal" modal).
+
+2. `/the-brain`:
+   - Split-screen Hero: Left side features a **Three.js / React Three Fiber 3D Interactive Neural Core** (two glowing geometric hemispheres representing Operations Engine `#1EB56A` and Experience Engine `#0D9488`, surrounded by 8 orbiting domain nodes that light up and pulse based on apps selected in the Stack Composer; supports orbit drag and click-to-inspect). Right side features a live **0.88 Confidence HITL Gate Simulator** (interactive slider from `0.50` to `0.99` showing real-time OPA policy routing: `>= 0.88` Auto-Commit to ERP/Ledger in Emerald vs. `< 0.88` Route to Human-in-the-Loop Audit Queue in Amber).
+   - Below: Searchable **Master Blueprint Explorer** covering the 6 Core Capability Pillars and 8 Vertical Agentic Core loops (`Think · Learn · Solve`).
+
+3. `/spenta-core`:
+   - Interactive vertical **L1–L6 Sovereign Fusion Stack** diagram where clicking any layer reveals its API contracts, SLA metrics (`<50ms` edge, zero cloud PII exfiltration), and which of the 13 apps depend on it.
+   - Interactive **4-Tier Server PC Configurator** allowing users to compare Tier 1–4 specs, tok/s, and CapEx side-by-side, highlighting the tier currently recommended by their composed stack.
+   - Dual-Shore Delivery Pod breakdown (`$11.50/hr` Dhaka R&D vs. `$100–$150/hr` Western agency comparison chart).
+
+4. `/infographics`:
+   - Interactive high-resolution SVG infographic cards with click-to-zoom lightbox and "Download SVG / Print" action: (1) Full 8-Hub Spenta AI Brain Map, (2) Dual Capability Engine Diagram, (3) L1–L6 Sovereign Isolation Architecture, (4) BEST (65+ Showrooms) & X Ltd (80 BaaS Swap Stations) Captive Ecosystem Flows.
+
+5. `/financials`:
+   - KPI Header Cards in `JetBrains Mono` (`$500K SAFE`, `6.38× 5-Yr Net Return`, `$5.85M Y5 Rev`, `250%–350% Client ROI`).
+   - Interactive Recharts ComposedChart (5-Year Revenue & Net Profit) with a **Conservative vs. Upside Scenario Toggle** and **FX/Tax Sensitivity Sliders** (120–125 BDT/USD, 25%–27.5% tax rate).
+   - Sortable **13-Product Margin Matrix Table** (color-coded by GM tier: High-Margin IP/SaaS >55% in Emerald vs. Cashflow Service Pods 29%–35% in Slate).
+
+6. `/pitch-deck`:
+   - Clean 16:9 interactive **18-Slide Master Pitch Deck Viewer** (keyboard Left/Right navigation, slide jump sidebar, KPI callout layouts, speaker notes drawer) covering Cover, Executive Thesis, Friction Matrix, Market Timing ($2.52T AI / $667B Spatial / 11M Health Deficit), Dual Engine, L1–L6 Stack, Healthcare ERP Wedge, Prime Bank OCR Proof, Apollo JMI, Samsung Biologics, ISHO, Jotax Oy, 13-Product Catalog, Dual-Shore Edge, Financials, and $500K SAFE Ask.
+
+7. `/resources`:
+   - Filterable **Enterprise Case Study Cards** (Samsung Biologics, Prime Bank, Apollo JMI, LABAID, ISHO, Jotax Oy, Coca-Cola / bKashVerse), Compliance Readiness Badges (HIPAA, SOC 2, ISO 27001, Bangladesh Bank ICT v4.0), and an interactive **Stack-Aware Proposal Request Form** that automatically pre-populates the user's selected apps from the Stack Composer.
+
+====================================================================
+6. CODE QUALITY & DELIVERY INSTRUCTIONS
+====================================================================
+- Organize cleanly under `src/app/`, `src/components/`, `src/components/three/`, `src/data/spentaManifest.ts`, and `src/store/useStackStore.ts`.
+- Wrap all Three.js components inside a `'use client'` dynamic import with `{ ssr: false }` and an error boundary so SSR builds never fail.
+- Ensure every interactive element (buttons, sliders, SVG nodes, 3D nodes, drawer actions, filters) is fully wired with real state—no dead links or stubbed `TODO` handlers.
+- Output the complete project structure and full source code for all core files so it compiles and runs cleanly with `npm run dev`.

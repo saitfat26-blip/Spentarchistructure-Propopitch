@@ -1,0 +1,1044 @@
+# Solar System — Interactive 3D Map
+## Mission
+Create implementation-ready, token-driven UI guidance for Solar System — Interactive 3D Map that is optimized for consistency, accessibility, and fast delivery across marketing website.
+
+## Brand
+- Product/brand: Solar System — Interactive 3D Map
+- URL: https://universemap.net/solar-system-3d-map/
+- Audience: visitors and general audience
+- Product surface: marketing website
+- Style theme tone: modern, clean, and highly engaging
+
+## Design Token Registry
+### Color Tokens
+- `color-foreground-1` (Role: foreground): Hex `#FFFFFF`, Raw `rgba(255, 255, 255, 1)` (Confidence: 0.80, Frequency: 376)
+- `color-foreground-2` (Role: foreground): Hex `#E2ECF4AD`, Raw `rgba(226, 236, 244, 0.68)` (Confidence: 0.80, Frequency: 72)
+- `color-border-3` (Role: border): Hex `#97C4FF57`, Raw `rgba(151, 196, 255, 0.34)` (Confidence: 0.85, Frequency: 24)
+- `color-primary-4` (Role: primary): Hex `#007BFF`, Raw `rgba(0, 123, 255, 1)` (Confidence: 0.60, Frequency: 18)
+- `color-foreground-5` (Role: foreground): Hex `#F7FBFF`, Raw `rgba(247, 251, 255, 1)` (Confidence: 0.80, Frequency: 18)
+- `color-primary-6` (Role: primary): Hex `#C4D6F0`, Raw `rgba(196, 214, 240, 1)` (Confidence: 0.60, Frequency: 16)
+- `color-primary-7` (Role: primary): Hex `#FFF1DD`, Raw `rgba(255, 241, 221, 1)` (Confidence: 0.60, Frequency: 12)
+- `color-border-8` (Role: border): Hex `#97C4FF36`, Raw `rgba(151, 196, 255, 0.21)` (Confidence: 0.85, Frequency: 12)
+- `color-foreground-9` (Role: foreground): Hex `#E2ECF480`, Raw `rgba(226, 236, 244, 0.5)` (Confidence: 0.80, Frequency: 12)
+- `color-background-10` (Role: background): Hex `#000000`, Raw `rgba(0, 0, 0, 1)` (Confidence: 0.80, Frequency: 9)
+- `color-border-11` (Role: border): Hex `#FFFFFF2E`, Raw `rgba(255, 255, 255, 0.18)` (Confidence: 0.85, Frequency: 8)
+- `color-border-12` (Role: border): Hex `#97C4FF42`, Raw `rgba(151, 196, 255, 0.26)` (Confidence: 0.85, Frequency: 8)
+- `color-primary-13` (Role: primary): Hex `#488EFFF5`, Raw `rgba(72, 142, 255, 0.96)` (Confidence: 0.60, Frequency: 6)
+- `color-background-14` (Role: background): Hex `#040A16C2`, Raw `rgba(4, 10, 22, 0.76)` (Confidence: 0.80, Frequency: 6)
+- `color-foreground-15` (Role: foreground): Hex `#FFF5E4`, Raw `rgba(255, 245, 228, 1)` (Confidence: 0.80, Frequency: 6)
+- `color-primary-16` (Role: primary): Hex `#A8BEDC`, Raw `rgba(168, 190, 220, 1)` (Confidence: 0.60, Frequency: 6)
+- `color-primary-17` (Role: primary): Hex `#FFE0BB`, Raw `rgba(255, 224, 187, 1)` (Confidence: 0.60, Frequency: 6)
+- `color-foreground-18` (Role: foreground): Hex `#E6EDFFB8`, Raw `rgba(230, 237, 255, 0.72)` (Confidence: 0.80, Frequency: 5)
+- `color-foreground-19` (Role: foreground): Hex `#F5F9FC`, Raw `rgba(245, 249, 252, 1)` (Confidence: 0.80, Frequency: 5)
+- `color-border-20` (Role: border): Hex `#D7D7D7`, Raw `rgba(215, 215, 215, 1)` (Confidence: 0.85, Frequency: 4)
+- `color-border-21` (Role: border): Hex `#CCCCCC`, Raw `rgba(204, 204, 204, 1)` (Confidence: 0.85, Frequency: 4)
+- `color-background-22` (Role: background): Hex `#040A16A8`, Raw `rgba(4, 10, 22, 0.66)` (Confidence: 0.80, Frequency: 2)
+- `color-background-23` (Role: background): Hex `#040A16B8`, Raw `rgba(4, 10, 22, 0.72)` (Confidence: 0.80, Frequency: 2)
+- `color-background-24` (Role: background): Hex `#6868684D`, Raw `rgba(104, 104, 104, 0.3)` (Confidence: 0.80, Frequency: 1)
+- `color-border-25` (Role: border): Hex `#FFFFFF33`, Raw `rgba(255, 255, 255, 0.2)` (Confidence: 0.85, Frequency: 1)
+- `color-background-26` (Role: background): Hex `#090C169E`, Raw `rgba(9, 12, 22, 0.62)` (Confidence: 0.80, Frequency: 1)
+- `color-surface-27` (Role: surface): Hex `#FFFFFF26`, Raw `rgba(255, 255, 255, 0.15)` (Confidence: 0.80, Frequency: 1)
+- `color-background-28` (Role: background): Hex `#040814`, Raw `rgba(4, 8, 20, 1)` (Confidence: 0.80, Frequency: 1)
+- `color-accent-29` (Role: accent): Hex `#FFB563BD`, Raw `rgba(255, 181, 99, 0.74)` (Confidence: 0.70, Frequency: 1)
+- `color-secondary-30` (Role: secondary): Hex `#081226BD`, Raw `rgba(8, 18, 38, 0.74)` (Confidence: 0.65, Frequency: 1)
+- `color-secondary-31` (Role: secondary): Hex `#FF894F24`, Raw `rgba(255, 137, 79, 0.14)` (Confidence: 0.65, Frequency: 1)
+- `color-background-32` (Role: background): Hex `#030507`, Raw `rgba(3, 5, 7, 1)` (Confidence: 0.80, Frequency: 1)
+- `color-border-33` (Role: border): Hex `#68E4EF33`, Raw `rgba(104, 228, 239, 0.2)` (Confidence: 0.85, Frequency: 1)
+- `color-secondary-34` (Role: secondary): Hex `#0B57D0`, Raw `rgba(11, 87, 208, 1)` (Confidence: 0.65, Frequency: 1)
+- `color-border-35` (Role: border): Hex `#FFFFFF1A`, Raw `rgba(255, 255, 255, 0.1)` (Confidence: 0.85, Frequency: 1)
+- `color-surface-36` (Role: surface): Hex `#FFFCFF`, Raw `rgba(255, 252, 255, 1)` (Confidence: 0.80, Frequency: 1)
+
+### Typography Style Specifications
+- Primary Font Family: `-apple-system`
+- Base Size: `16px`
+- Base Weight: `400`
+- Line Height: `24px`
+- Typography Scale: `font.size.h1=25.6px`, `font.size.h2=14px`
+
+#### Heading Tags
+- Heading Tag `h1`: Font `Roboto`, Size `25.6px`, Weight `800`, Line Height `54px`
+- Heading Tag `h2`: Font `Roboto`, Size `14px`, Weight `800`, Line Height `18.2px`
+
+#### Body Elements
+- Body Paragraph `a.skip-link.screen-reader-text`: Font `Roboto`, Size `16px`, Weight `400`, Line Height `24px`
+- Body Paragraph `span`: Font `Roboto`, Size `14px`, Weight `700`, Line Height `15.4px`
+- Body Paragraph `p.um-footer-summary`: Font `Roboto`, Size `14px`, Weight `400`, Line Height `23.8px`
+- Body Paragraph `a.um-footer-contact`: Font `Roboto`, Size `13px`, Weight `700`, Line Height `18.2px`
+- Body Paragraph `a`: Font `Roboto`, Size `13px`, Weight `400`, Line Height `18.85px`
+- Body Paragraph `span`: Font `Roboto`, Size `12px`, Weight `500`, Line Height `14.4px`
+- Body Paragraph `p.um-footer-copyright, p.um-footer-note`: Font `Roboto`, Size `12px`, Weight `400`, Line Height `18px`
+- Body Paragraph `span.solar-map-scale-note`: Font `Roboto`, Size `10px`, Weight `500`, Line Height `12px`
+
+### Spacing System
+- Space Token `space.1` (`--space-1`): `2px` (px: 2, Frequency: 2)
+- Space Token `space.2` (`--space-2`): `4px` (px: 4, Frequency: 12)
+- Space Token `space.3` (`--space-3`): `5px` (px: 5, Frequency: 9)
+- Space Token `space.4` (`--space-4`): `6px` (px: 6, Frequency: 15)
+- Space Token `space.5` (`--space-5`): `7px` (px: 7, Frequency: 7)
+- Space Token `space.6` (`--space-6`): `8px` (px: 8, Frequency: 13)
+- Space Token `space.7` (`--space-7`): `9px` (px: 9, Frequency: 7)
+- Space Token `space.8` (`--space-8`): `10px` (px: 10, Frequency: 17)
+- Space Token `space.9` (`--space-9`): `11px` (px: 11, Frequency: 17)
+- Space Token `space.10` (`--space-10`): `12px` (px: 12, Frequency: 2)
+- Space Token `space.11` (`--space-11`): `14px` (px: 14, Frequency: 2)
+- Space Token `space.12` (`--space-12`): `16px` (px: 16, Frequency: 5)
+- Space Token `space.13` (`--space-13`): `18px` (px: 18, Frequency: 3)
+- Space Token `space.14` (`--space-14`): `20px` (px: 20, Frequency: 35)
+- Space Token `space.15` (`--space-15`): `40px` (px: 40, Frequency: 2)
+- Space Token `space.16` (`--space-16`): `42px` (px: 42, Frequency: 1)
+- Space Token `space.17` (`--space-17`): `44px` (px: 44, Frequency: 3)
+- Space Token `space.18` (`--space-18`): `52.3333px` (px: 52.3333, Frequency: 2)
+- Space Token `space.19` (`--space-19`): `54px` (px: 54, Frequency: 1)
+- Space Token `space.20` (`--space-20`): `62.3333px` (px: 62.3333, Frequency: 6)
+
+### Layout & Border Radius Mappings
+- Corner Radius `radius.1`: `5px` (px: 5, Frequency: 12)
+- Corner Radius `radius.2`: `6px` (px: 6, Frequency: 8)
+- Corner Radius `radius.3`: `8px` (px: 8, Frequency: 40)
+- Corner Radius `radius.4`: `14px` (px: 14, Frequency: 4)
+- Corner Radius `radius.5`: `20px` (px: 20, Frequency: 4)
+
+### Shadow Elevation Guidelines
+- Shadow Elevation `shadow.1`: `rgba(77, 157, 255, 0.1) 0px 0px 18px 0px inset, rgba(77, 157, 255, 0.14) 0px 0px 18px 0px` (Elevation: lg, Frequency: 6)
+- Shadow Elevation `shadow.2`: `rgba(0, 0, 0, 0.3) 0px 14px 34px 0px` (Elevation: xl, Frequency: 1)
+- Shadow Elevation `shadow.3`: `rgba(0, 0, 0, 0.35) 0px 16px 40px 0px` (Elevation: xl, Frequency: 1)
+- Shadow Elevation `shadow.4`: `rgba(0, 0, 0, 0.22) 0px 0px 30px 0px` (Elevation: xl, Frequency: 1)
+- Shadow Elevation `shadow.5`: `rgba(77, 157, 255, 0.12) 0px 0px 28px 0px` (Elevation: xl, Frequency: 1)
+
+## Style Foundations
+- Visual style: modern, clean, and highly engaging
+- Main font style: `font.family.primary=-apple-system`, `font.family.stack=-apple-system, sans-serif`, `font.size.base=16px`, `font.weight.base=400`, `font.lineHeight.base=24px`
+- Typography scale: `font.size.h1=25.6px`, `font.size.h2=14px`
+- Color palette: `color.text.primary=#FFFFFF`, `color.surface.base=#000000`, `color.surface.muted=#FFFFFF26`, `color.border.default=#97C4FF57`, `color-primary-4=#007BFF`, `color-primary-6=#C4D6F0`, `color-primary-7=#FFF1DD`, `color-primary-13=#488EFFF5`, `color-primary-16=#A8BEDC`, `color-primary-17=#FFE0BB`, `color-accent-29=#FFB563BD`, `color-secondary-30=#081226BD`, `color-secondary-31=#FF894F24`, `color-secondary-34=#0B57D0`
+- Spacing scale: `space.1=2px`, `space.2=4px`, `space.3=5px`, `space.4=6px`, `space.5=7px`, `space.6=8px`, `space.7=9px`, `space.8=10px`, `space.9=11px`, `space.10=12px`, `space.11=14px`, `space.12=16px`, `space.13=18px`, `space.14=20px`, `space.15=40px`, `space.16=42px`, `space.17=44px`, `space.18=52.3333px`, `space.19=54px`, `space.20=62.3333px`
+- Radius/shadow/motion tokens: No reliable extraction yet; motion and shape tokens should be defined manually.
+
+## Accessibility Requirements (WCAG 2.2 AA)
+- Contrast: All text elements must satisfy contrast ratio requirements. Primary text (`#FFFFFF`) on background (`#000000`) must be >= 4.5:1.
+- Keyboard: All interactive elements (anchors, buttons, inputs) must be operable using standard keyboard keys (Tab, Shift+Tab, Enter, Space).
+- Focus Indicators: Interactive elements must have a visible, high-contrast focus indicator (e.g. outline or background change).
+- Content Structure: Landmark semantic elements (header, nav, main, section, footer) must be used to group page sections.
+
+## Component Specifications & Style Rules
+- **Hero & Header Sections** (`header.elementor.elementor-100.elementor-location-header`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `roboto`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `border-top-color`: `rgb(255, 255, 255)`
+    - `border-bottom-color`: `rgb(255, 255, 255)`
+    - `border-left-color`: `rgb(255, 255, 255)`
+    - `border-right-color`: `rgb(255, 255, 255)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `1264.67px`
+    - `height`: `110.667px`
+    - `position`: `sticky`
+    - `z-index`: `500`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`div.elementor-element.elementor-element-f64e9a7.e-flex.e-con-boxed.e-con.e-parent.e-lazyloaded`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `border-top-color`: `rgb(255, 255, 255)`
+    - `border-bottom-color`: `rgb(255, 255, 255)`
+    - `border-left-color`: `rgb(255, 255, 255)`
+    - `border-right-color`: `rgb(255, 255, 255)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `flex`
+    - `flex-direction`: `column`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `1264.67px`
+    - `height`: `0px`
+    - `max-width`: `100%`
+    - `position`: `relative`
+    - `transition-property`: `background, border, box-shadow, transform`
+    - `transition-timing-function`: `ease, ease, ease, ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`div.e-con-inner`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `padding-top`: `10px`
+    - `padding-bottom`: `10px`
+    - `margin-left`: `52.3333px`
+    - `margin-right`: `52.3333px`
+    - `border-top-color`: `rgb(255, 255, 255)`
+    - `border-bottom-color`: `rgb(255, 255, 255)`
+    - `border-left-color`: `rgb(255, 255, 255)`
+    - `border-right-color`: `rgb(255, 255, 255)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `flex`
+    - `flex-direction`: `column`
+    - `gap`: `20px`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `1140px`
+    - `height`: `110.667px`
+    - `max-width`: `min(100%, 1140px)`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`div.headernav`):
+  - Visual Rules:
+    - `background-color`: `rgba(104, 104, 104, 0.3)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `padding-top`: `10px`
+    - `padding-bottom`: `10px`
+    - `padding-left`: `40px`
+    - `padding-right`: `40px`
+    - `border-top-color`: `rgb(255, 255, 255)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgba(255, 255, 255, 0.2)`
+    - `border-left-color`: `rgb(255, 255, 255)`
+    - `border-right-color`: `rgb(255, 255, 255)`
+    - `border-radius`: `200px`
+    - `border-top-left-radius`: `200px`
+    - `border-top-right-radius`: `200px`
+    - `border-bottom-left-radius`: `200px`
+    - `border-bottom-right-radius`: `200px`
+    - `display`: `flex`
+    - `align-items`: `center`
+    - `justify-content`: `space-between`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `1140px`
+    - `height`: `90.6667px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Navigation** (`div.menubars.mainmenu`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `margin-left`: `20px`
+    - `border-top-color`: `rgb(255, 255, 255)`
+    - `border-bottom-color`: `rgb(255, 255, 255)`
+    - `border-left-color`: `rgb(255, 255, 255)`
+    - `border-right-color`: `rgb(255, 255, 255)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `413.594px`
+    - `height`: `31px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Buttons** (`button, .btn`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `border-top-color`: `rgb(255, 255, 255)`
+    - `border-bottom-color`: `rgb(255, 255, 255)`
+    - `border-left-color`: `rgb(255, 255, 255)`
+    - `border-right-color`: `rgb(255, 255, 255)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `flex`
+    - `align-items`: `center`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `129.708px`
+    - `height`: `35px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`button.`):
+  - Visual Rules:
+    - `background-color`: `rgba(9, 12, 22, 0.62)`
+    - `color`: `rgba(72, 142, 255, 0.96)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `text-align`: `center`
+    - `border-top-width`: `0.666667px`
+    - `border-top-style`: `solid`
+    - `border-top-color`: `rgba(72, 142, 255, 0.96)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgba(72, 142, 255, 0.96)`
+    - `border-left-width`: `0.666667px`
+    - `border-left-style`: `solid`
+    - `border-left-color`: `rgba(72, 142, 255, 0.96)`
+    - `border-right-width`: `0.666667px`
+    - `border-right-style`: `solid`
+    - `border-right-color`: `rgba(72, 142, 255, 0.96)`
+    - `border-radius`: `14px`
+    - `border-top-left-radius`: `14px`
+    - `border-top-right-radius`: `14px`
+    - `border-bottom-left-radius`: `14px`
+    - `border-bottom-right-radius`: `14px`
+    - `box-shadow`: `rgba(0, 0, 0, 0.3) 0px 14px 34px 0px`
+    - `display`: `flex`
+    - `align-items`: `center`
+    - `justify-content`: `center`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `40px`
+    - `height`: `40px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Buttons** (`button, .btn`):
+  - Visual Rules:
+    - `background-color`: `rgba(9, 12, 22, 0.62)`
+    - `color`: `rgba(72, 142, 255, 0.96)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `text-align`: `center`
+    - `border-top-width`: `0.666667px`
+    - `border-top-style`: `solid`
+    - `border-top-color`: `rgba(72, 142, 255, 0.96)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgba(72, 142, 255, 0.96)`
+    - `border-left-width`: `0.666667px`
+    - `border-left-style`: `solid`
+    - `border-left-color`: `rgba(72, 142, 255, 0.96)`
+    - `border-right-width`: `0.666667px`
+    - `border-right-style`: `solid`
+    - `border-right-color`: `rgba(72, 142, 255, 0.96)`
+    - `border-radius`: `14px`
+    - `border-top-left-radius`: `14px`
+    - `border-top-right-radius`: `14px`
+    - `border-bottom-left-radius`: `14px`
+    - `border-bottom-right-radius`: `14px`
+    - `box-shadow`: `rgba(0, 0, 0, 0.3) 0px 14px 34px 0px`
+    - `display`: `flex`
+    - `align-items`: `center`
+    - `justify-content`: `center`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `40px`
+    - `height`: `40px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`button.`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `background-image`: `linear-gradient(135deg, rgba(72, 142, 255, 0.96), rgba(12, 61, 150, 0.96))`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `system-ui, -apple-system, "Segoe UI", Roboto, Arial`
+    - `font-size`: `14px`
+    - `font-weight`: `700`
+    - `line-height`: `15.4px`
+    - `text-align`: `center`
+    - `padding-top`: `12px`
+    - `padding-bottom`: `12px`
+    - `padding-left`: `14px`
+    - `padding-right`: `14px`
+    - `border-top-width`: `0.666667px`
+    - `border-top-style`: `solid`
+    - `border-top-color`: `rgba(255, 255, 255, 0.18)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgba(255, 255, 255, 0.18)`
+    - `border-left-width`: `0.666667px`
+    - `border-left-style`: `solid`
+    - `border-left-color`: `rgba(255, 255, 255, 0.18)`
+    - `border-right-width`: `0.666667px`
+    - `border-right-style`: `solid`
+    - `border-right-color`: `rgba(255, 255, 255, 0.18)`
+    - `border-radius`: `999px`
+    - `border-top-left-radius`: `999px`
+    - `border-top-right-radius`: `999px`
+    - `border-bottom-left-radius`: `999px`
+    - `border-bottom-right-radius`: `999px`
+    - `box-shadow`: `rgba(0, 0, 0, 0.35) 0px 16px 40px 0px`
+    - `display`: `flex`
+    - `align-items`: `center`
+    - `gap`: `10px`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `229.438px`
+    - `height`: `41.1979px`
+    - `transition-property`: `transform, box-shadow`
+    - `transition-timing-function`: `ease, ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Buttons** (`button, .btn`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `background-image`: `linear-gradient(135deg, rgba(72, 142, 255, 0.96), rgba(12, 61, 150, 0.96))`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `system-ui, -apple-system, "Segoe UI", Roboto, Arial`
+    - `font-size`: `14px`
+    - `font-weight`: `700`
+    - `line-height`: `15.4px`
+    - `text-align`: `center`
+    - `padding-top`: `12px`
+    - `padding-bottom`: `12px`
+    - `padding-left`: `14px`
+    - `padding-right`: `14px`
+    - `border-top-width`: `0.666667px`
+    - `border-top-style`: `solid`
+    - `border-top-color`: `rgba(255, 255, 255, 0.18)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgba(255, 255, 255, 0.18)`
+    - `border-left-width`: `0.666667px`
+    - `border-left-style`: `solid`
+    - `border-left-color`: `rgba(255, 255, 255, 0.18)`
+    - `border-right-width`: `0.666667px`
+    - `border-right-style`: `solid`
+    - `border-right-color`: `rgba(255, 255, 255, 0.18)`
+    - `border-radius`: `999px`
+    - `border-top-left-radius`: `999px`
+    - `border-top-right-radius`: `999px`
+    - `border-bottom-left-radius`: `999px`
+    - `border-bottom-right-radius`: `999px`
+    - `box-shadow`: `rgba(0, 0, 0, 0.35) 0px 16px 40px 0px`
+    - `display`: `flex`
+    - `align-items`: `center`
+    - `gap`: `10px`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `229.438px`
+    - `height`: `41.1979px`
+    - `transition-property`: `transform, box-shadow`
+    - `transition-timing-function`: `ease, ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Badges & Chips** (`.badge, .chip`):
+  - Visual Rules:
+    - `background-color`: `rgb(4, 8, 20)`
+    - `color`: `rgb(247, 251, 255)`
+    - `font-family`: `Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `border-top-color`: `rgb(247, 251, 255)`
+    - `border-bottom-color`: `rgb(247, 251, 255)`
+    - `border-left-color`: `rgb(247, 251, 255)`
+    - `border-right-color`: `rgb(247, 251, 255)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `1140px`
+    - `height`: `540px`
+    - `min-height`: `540px`
+    - `position`: `relative`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (GRID)** (`button.solar-map-button.solar-map-fullscreen`):
+  - Visual Rules:
+    - `background-color`: `rgba(4, 10, 22, 0.76)`
+    - `color`: `rgb(247, 251, 255)`
+    - `font-family`: `Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `text-align`: `center`
+    - `border-top-width`: `0.666667px`
+    - `border-top-style`: `solid`
+    - `border-top-color`: `rgba(151, 196, 255, 0.34)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgba(151, 196, 255, 0.34)`
+    - `border-left-width`: `0.666667px`
+    - `border-left-style`: `solid`
+    - `border-left-color`: `rgba(151, 196, 255, 0.34)`
+    - `border-right-width`: `0.666667px`
+    - `border-right-style`: `solid`
+    - `border-right-color`: `rgba(151, 196, 255, 0.34)`
+    - `border-radius`: `8px`
+    - `border-top-left-radius`: `8px`
+    - `border-top-right-radius`: `8px`
+    - `border-bottom-left-radius`: `8px`
+    - `border-bottom-right-radius`: `8px`
+    - `box-shadow`: `rgba(77, 157, 255, 0.1) 0px 0px 18px 0px inset, rgba(77, 157, 255, 0.14) 0px 0px 18px 0px`
+    - `display`: `grid`
+    - `align-items`: `center`
+    - `grid-template-columns`: `40.6667px`
+    - `grid-template-rows`: `40.6667px`
+    - `width`: `42px`
+    - `height`: `42px`
+    - `position`: `absolute`
+    - `z-index`: `5`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Buttons** (`button, .btn`):
+  - Visual Rules:
+    - `background-color`: `rgba(4, 10, 22, 0.76)`
+    - `color`: `rgb(247, 251, 255)`
+    - `font-family`: `Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `text-align`: `center`
+    - `border-top-width`: `0.666667px`
+    - `border-top-style`: `solid`
+    - `border-top-color`: `rgba(151, 196, 255, 0.34)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgba(151, 196, 255, 0.34)`
+    - `border-left-width`: `0.666667px`
+    - `border-left-style`: `solid`
+    - `border-left-color`: `rgba(151, 196, 255, 0.34)`
+    - `border-right-width`: `0.666667px`
+    - `border-right-style`: `solid`
+    - `border-right-color`: `rgba(151, 196, 255, 0.34)`
+    - `border-radius`: `8px`
+    - `border-top-left-radius`: `8px`
+    - `border-top-right-radius`: `8px`
+    - `border-bottom-left-radius`: `8px`
+    - `border-bottom-right-radius`: `8px`
+    - `box-shadow`: `rgba(77, 157, 255, 0.1) 0px 0px 18px 0px inset, rgba(77, 157, 255, 0.14) 0px 0px 18px 0px`
+    - `display`: `grid`
+    - `align-items`: `center`
+    - `grid-template-columns`: `40.6667px`
+    - `grid-template-rows`: `40.6667px`
+    - `width`: `42px`
+    - `height`: `42px`
+    - `position`: `absolute`
+    - `z-index`: `5`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`div.solar-map-distance-card`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `background-image`: `linear-gradient(90deg, rgba(4, 10, 22, 0.64), rgba(4, 10, 22, 0.12))`
+    - `color`: `rgba(230, 237, 255, 0.72)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `padding-top`: `8px`
+    - `padding-bottom`: `8px`
+    - `padding-left`: `11px`
+    - `padding-right`: `11px`
+    - `border-top-color`: `rgba(230, 237, 255, 0.72)`
+    - `border-bottom-color`: `rgba(230, 237, 255, 0.72)`
+    - `border-left-width`: `2px`
+    - `border-left-style`: `solid`
+    - `border-left-color`: `rgba(255, 181, 99, 0.74)`
+    - `border-right-color`: `rgba(230, 237, 255, 0.72)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `box-shadow`: `rgba(0, 0, 0, 0.22) 0px 0px 30px 0px`
+    - `display`: `flex`
+    - `flex-direction`: `column`
+    - `align-items`: `flow-start`
+    - `gap`: `5px`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `204.562px`
+    - `height`: `47.3958px`
+    - `max-width`: `340px`
+    - `position`: `absolute`
+    - `z-index`: `7`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Cards & Containers** (`.card, .panel`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `background-image`: `linear-gradient(90deg, rgba(4, 10, 22, 0.64), rgba(4, 10, 22, 0.12))`
+    - `color`: `rgba(230, 237, 255, 0.72)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `padding-top`: `8px`
+    - `padding-bottom`: `8px`
+    - `padding-left`: `11px`
+    - `padding-right`: `11px`
+    - `border-top-color`: `rgba(230, 237, 255, 0.72)`
+    - `border-bottom-color`: `rgba(230, 237, 255, 0.72)`
+    - `border-left-width`: `2px`
+    - `border-left-style`: `solid`
+    - `border-left-color`: `rgba(255, 181, 99, 0.74)`
+    - `border-right-color`: `rgba(230, 237, 255, 0.72)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `box-shadow`: `rgba(0, 0, 0, 0.22) 0px 0px 30px 0px`
+    - `display`: `flex`
+    - `flex-direction`: `column`
+    - `align-items`: `flow-start`
+    - `gap`: `5px`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `204.562px`
+    - `height`: `47.3958px`
+    - `max-width`: `340px`
+    - `position`: `absolute`
+    - `z-index`: `7`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`div.solar-map-control-strip`):
+  - Visual Rules:
+    - `background-color`: `rgba(4, 10, 22, 0.66)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `padding-top`: `6px`
+    - `padding-bottom`: `6px`
+    - `padding-left`: `6px`
+    - `padding-right`: `6px`
+    - `border-top-width`: `0.666667px`
+    - `border-top-style`: `solid`
+    - `border-top-color`: `rgba(151, 196, 255, 0.26)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgba(151, 196, 255, 0.26)`
+    - `border-left-width`: `0.666667px`
+    - `border-left-style`: `solid`
+    - `border-left-color`: `rgba(151, 196, 255, 0.26)`
+    - `border-right-width`: `0.666667px`
+    - `border-right-style`: `solid`
+    - `border-right-color`: `rgba(151, 196, 255, 0.26)`
+    - `border-radius`: `8px`
+    - `border-top-left-radius`: `8px`
+    - `border-top-right-radius`: `8px`
+    - `border-bottom-left-radius`: `8px`
+    - `border-bottom-right-radius`: `8px`
+    - `box-shadow`: `rgba(77, 157, 255, 0.12) 0px 0px 28px 0px`
+    - `display`: `flex`
+    - `align-items`: `center`
+    - `justify-content`: `center`
+    - `gap`: `8px`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `598.281px`
+    - `height`: `55.3333px`
+    - `position`: `relative`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`div.solar-map-select.solar-map-focus-picker`):
+  - Visual Rules:
+    - `background-color`: `rgba(8, 18, 38, 0.74)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `padding-left`: `10px`
+    - `padding-right`: `10px`
+    - `border-top-width`: `0.666667px`
+    - `border-top-style`: `solid`
+    - `border-top-color`: `rgba(151, 196, 255, 0.26)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgba(151, 196, 255, 0.26)`
+    - `border-left-width`: `0.666667px`
+    - `border-left-style`: `solid`
+    - `border-left-color`: `rgba(151, 196, 255, 0.26)`
+    - `border-right-width`: `0.666667px`
+    - `border-right-style`: `solid`
+    - `border-right-color`: `rgba(151, 196, 255, 0.26)`
+    - `border-radius`: `8px`
+    - `border-top-left-radius`: `8px`
+    - `border-top-right-radius`: `8px`
+    - `border-bottom-left-radius`: `8px`
+    - `border-bottom-right-radius`: `8px`
+    - `display`: `flex`
+    - `align-items`: `center`
+    - `gap`: `8px`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `234.948px`
+    - `height`: `42px`
+    - `min-width`: `214px`
+    - `position`: `relative`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Navigation** (`nav.solar-map-views`):
+  - Visual Rules:
+    - `background-color`: `rgba(4, 10, 22, 0.66)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `padding-top`: `4px`
+    - `padding-bottom`: `4px`
+    - `padding-left`: `4px`
+    - `padding-right`: `4px`
+    - `border-top-width`: `0.666667px`
+    - `border-top-style`: `solid`
+    - `border-top-color`: `rgba(151, 196, 255, 0.21)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgba(151, 196, 255, 0.21)`
+    - `border-left-width`: `0.666667px`
+    - `border-left-style`: `solid`
+    - `border-left-color`: `rgba(151, 196, 255, 0.21)`
+    - `border-right-width`: `0.666667px`
+    - `border-right-style`: `solid`
+    - `border-right-color`: `rgba(151, 196, 255, 0.21)`
+    - `border-radius`: `8px`
+    - `border-top-left-radius`: `8px`
+    - `border-top-right-radius`: `8px`
+    - `border-bottom-left-radius`: `8px`
+    - `border-bottom-right-radius`: `8px`
+    - `display`: `flex`
+    - `gap`: `4px`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `268.083px`
+    - `height`: `39.8333px`
+    - `position`: `absolute`
+    - `z-index`: `6`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`nav.solar-map-views`):
+  - Visual Rules:
+    - `background-color`: `rgba(4, 10, 22, 0.66)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `padding-top`: `4px`
+    - `padding-bottom`: `4px`
+    - `padding-left`: `4px`
+    - `padding-right`: `4px`
+    - `border-top-width`: `0.666667px`
+    - `border-top-style`: `solid`
+    - `border-top-color`: `rgba(151, 196, 255, 0.21)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgba(151, 196, 255, 0.21)`
+    - `border-left-width`: `0.666667px`
+    - `border-left-style`: `solid`
+    - `border-left-color`: `rgba(151, 196, 255, 0.21)`
+    - `border-right-width`: `0.666667px`
+    - `border-right-style`: `solid`
+    - `border-right-color`: `rgba(151, 196, 255, 0.21)`
+    - `border-radius`: `8px`
+    - `border-top-left-radius`: `8px`
+    - `border-top-right-radius`: `8px`
+    - `border-bottom-left-radius`: `8px`
+    - `border-bottom-right-radius`: `8px`
+    - `display`: `flex`
+    - `gap`: `4px`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `268.083px`
+    - `height`: `39.8333px`
+    - `position`: `absolute`
+    - `z-index`: `6`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Buttons** (`button, .btn`):
+  - Visual Rules:
+    - `background-color`: `rgba(255, 137, 79, 0.14)`
+    - `color`: `rgb(255, 224, 187)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `11px`
+    - `font-weight`: `600`
+    - `line-height`: `16.5px`
+    - `text-align`: `center`
+    - `padding-top`: `7px`
+    - `padding-bottom`: `7px`
+    - `padding-left`: `11px`
+    - `padding-right`: `11px`
+    - `border-top-color`: `rgb(255, 224, 187)`
+    - `border-bottom-color`: `rgb(255, 224, 187)`
+    - `border-left-color`: `rgb(255, 224, 187)`
+    - `border-right-color`: `rgb(255, 224, 187)`
+    - `border-radius`: `5px`
+    - `border-top-left-radius`: `5px`
+    - `border-top-right-radius`: `5px`
+    - `border-bottom-left-radius`: `5px`
+    - `border-bottom-right-radius`: `5px`
+    - `box-shadow`: `rgba(255, 181, 99, 0.396) 0px 0px 0px 1px inset`
+    - `display`: `block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `77.75px`
+    - `height`: `30.5px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Buttons** (`button, .btn`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(196, 214, 240)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `11px`
+    - `font-weight`: `600`
+    - `line-height`: `16.5px`
+    - `text-align`: `center`
+    - `padding-top`: `7px`
+    - `padding-bottom`: `7px`
+    - `padding-left`: `11px`
+    - `padding-right`: `11px`
+    - `border-top-color`: `rgb(196, 214, 240)`
+    - `border-bottom-color`: `rgb(196, 214, 240)`
+    - `border-left-color`: `rgb(196, 214, 240)`
+    - `border-right-color`: `rgb(196, 214, 240)`
+    - `border-radius`: `5px`
+    - `border-top-left-radius`: `5px`
+    - `border-top-right-radius`: `5px`
+    - `border-bottom-left-radius`: `5px`
+    - `border-bottom-right-radius`: `5px`
+    - `display`: `block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `85.4583px`
+    - `height`: `30.5px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`button.`):
+  - Visual Rules:
+    - `background-color`: `rgba(4, 10, 22, 0.72)`
+    - `color`: `rgb(196, 214, 240)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `10px`
+    - `font-weight`: `600`
+    - `line-height`: `14px`
+    - `text-align`: `center`
+    - `padding-top`: `5px`
+    - `padding-bottom`: `5px`
+    - `padding-left`: `9px`
+    - `padding-right`: `9px`
+    - `border-top-width`: `0.666667px`
+    - `border-top-style`: `solid`
+    - `border-top-color`: `rgba(151, 196, 255, 0.21)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgba(151, 196, 255, 0.21)`
+    - `border-left-width`: `0.666667px`
+    - `border-left-style`: `solid`
+    - `border-left-color`: `rgba(151, 196, 255, 0.21)`
+    - `border-right-width`: `0.666667px`
+    - `border-right-style`: `solid`
+    - `border-right-color`: `rgba(151, 196, 255, 0.21)`
+    - `border-radius`: `6px`
+    - `border-top-left-radius`: `6px`
+    - `border-top-right-radius`: `6px`
+    - `border-bottom-left-radius`: `6px`
+    - `border-bottom-right-radius`: `6px`
+    - `display`: `flex`
+    - `align-items`: `center`
+    - `gap`: `6px`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `87.375px`
+    - `height`: `27px`
+    - `min-height`: `27px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Buttons** (`button, .btn`):
+  - Visual Rules:
+    - `background-color`: `rgba(4, 10, 22, 0.72)`
+    - `color`: `rgb(196, 214, 240)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `10px`
+    - `font-weight`: `600`
+    - `line-height`: `14px`
+    - `text-align`: `center`
+    - `padding-top`: `5px`
+    - `padding-bottom`: `5px`
+    - `padding-left`: `9px`
+    - `padding-right`: `9px`
+    - `border-top-width`: `0.666667px`
+    - `border-top-style`: `solid`
+    - `border-top-color`: `rgba(151, 196, 255, 0.21)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgba(151, 196, 255, 0.21)`
+    - `border-left-width`: `0.666667px`
+    - `border-left-style`: `solid`
+    - `border-left-color`: `rgba(151, 196, 255, 0.21)`
+    - `border-right-width`: `0.666667px`
+    - `border-right-style`: `solid`
+    - `border-right-color`: `rgba(151, 196, 255, 0.21)`
+    - `border-radius`: `6px`
+    - `border-top-left-radius`: `6px`
+    - `border-top-right-radius`: `6px`
+    - `border-bottom-left-radius`: `6px`
+    - `border-bottom-right-radius`: `6px`
+    - `display`: `flex`
+    - `align-items`: `center`
+    - `gap`: `6px`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `87.375px`
+    - `height`: `27px`
+    - `min-height`: `27px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (GRID)** (`div.um-footer-main`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `padding-top`: `54px`
+    - `padding-bottom`: `42px`
+    - `border-top-color`: `rgb(255, 255, 255)`
+    - `border-bottom-color`: `rgb(255, 255, 255)`
+    - `border-left-color`: `rgb(255, 255, 255)`
+    - `border-right-color`: `rgb(255, 255, 255)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `grid`
+    - `gap`: `44px`
+    - `grid-template-columns`: `398.646px 192.448px 192.448px 192.448px`
+    - `grid-template-rows`: `253.719px`
+    - `width`: `1108px`
+    - `height`: `349.719px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (GRID)** (`nav.`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `border-top-color`: `rgb(255, 255, 255)`
+    - `border-bottom-color`: `rgb(255, 255, 255)`
+    - `border-left-color`: `rgb(255, 255, 255)`
+    - `border-right-color`: `rgb(255, 255, 255)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `grid`
+    - `gap`: `11px`
+    - `grid-template-columns`: `192.448px`
+    - `grid-template-rows`: `18.8438px 18.8438px 18.8438px 18.8438px`
+    - `width`: `192.448px`
+    - `height`: `108.375px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`div.um-footer-bottom`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `Roboto, sans-serif`
+    - `font-size`: `16px`
+    - `font-weight`: `400`
+    - `line-height`: `24px`
+    - `padding-top`: `18px`
+    - `padding-bottom`: `18px`
+    - `border-top-width`: `0.666667px`
+    - `border-top-style`: `solid`
+    - `border-top-color`: `rgba(255, 255, 255, 0.1)`
+    - `border-bottom-color`: `rgb(255, 255, 255)`
+    - `border-left-color`: `rgb(255, 255, 255)`
+    - `border-right-color`: `rgb(255, 255, 255)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `flex`
+    - `align-items`: `center`
+    - `justify-content`: `space-between`
+    - `gap`: `20px`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `1108px`
+    - `height`: `70px`
+    - `min-height`: `70px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+
+## Writing Tone
+Concise, confident, implementation-focused.
+
+## Rules: Do
+- Use semantic design tokens instead of hardcoded hex values in component stylesheets.
+- Ensure every interactive component defines styles for default, hover, focus-visible, active, disabled, loading, and error states.
+- Support responsive viewport behaviors (mobile, tablet, desktop) using fluid flex/grid layouts.
+- Always include QA verification tags for DOM accessibility and conformance checks.
+
+## Rules: Don't
+- Do not introduce one-off spacing, margin, or padding values outside the spacing system scale.
+- Do not allow hidden or low-contrast outlines for keyboard focus indicators.
+- Do not deploy components without explicit accessibility acceptance criteria.
+
+## Guideline Authoring Workflow
+1. Restate design intent in one sentence.
+2. Define foundations and semantic tokens.
+3. Define component anatomy, variants, interactions, and state behavior.
+4. Add accessibility acceptance criteria with pass/fail checks.
+5. Add anti-patterns, migration notes, and edge-case handling.
+6. End with a QA checklist.
+
+## Required Output Structure
+- Context and goals.
+- Design tokens and foundations.
+- Component-level rules (anatomy, variants, states, responsive behavior).
+- Accessibility requirements and testable acceptance criteria.
+- Content and tone standards with examples.
+- Anti-patterns and prohibited implementations.
+- QA checklist.
+
+## Component Rule Expectations
+- Include keyboard, pointer, and touch behavior.
+- Include spacing and typography token requirements.
+- Include long-content, overflow, and empty-state handling.
+- Include known page component density: hero & header sections (105), layout container (flex) (105), layout container (flex) (105), layout container (flex) (105), navigation (105), buttons (105), layout container (flex) (105), buttons (105), layout container (flex) (105), buttons (105), badges & chips (105), layout container (grid) (105), buttons (105), layout container (flex) (105), cards & containers (105), layout container (flex) (105), layout container (flex) (105), navigation (105), layout container (flex) (105), buttons (105), buttons (105), layout container (flex) (105), buttons (105), layout container (grid) (105), layout container (grid) (105), layout container (flex) (105).
+
+## Quality Gates
+- Every non-negotiable rule must use "must".
+- Every recommendation should use "should".
+- Every accessibility rule must be testable in implementation.
+- Teams should prefer system consistency over local visual exceptions.
